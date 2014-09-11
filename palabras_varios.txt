@@ -1,0 +1,153 @@
+bien
+x{}y depth: 2
+x+-y depth: 2
+x<>y depth: 2
+[{}] depth: 2
+{<>} depth: 2
+xy() depth: 1
+{()} depth: 2
+{xy} depth: 2
+xy[] depth: 1
+{+-} depth: 2
+mal
+{>-} flips: 1
+>)[] flips: 3
+x-x[ flips: 5
+x[]- flips: 7
+-{[] flips: 9
+bien
+{[]{}} depth: 2
+(<>{}) depth: 2
+{}+()- depth: 2
+xy()+- depth: 1
+<<>>() depth: 2
+(+-+-) depth: 2
++<xy>- depth: 3
+[]{()} depth: 2
+(<>)<> depth: 2
+{[]}xy depth: 2
+mal
+x<([]y flips: 1
++[)+>- flips: 3
+}y)+<( flips: 5
+<[](]( flips: 7
+>[-[}> flips: 9
+bien
+[xy()<>] depth: 2
+(+-)({}) depth: 2
+(+-+{}-) depth: 3
+[(<>)]() depth: 3
+[{}]()+- depth: 2
+[]{{}}+- depth: 2
+<({}+-)> depth: 3
+<(())>+- depth: 3
++-<xy>[] depth: 2
+{[]}+()- depth: 2
+mal
+<>+xy++- flips: 1
+((xyx<]) flips: 3
+}x<>--xy flips: 5
+[y()(x}- flips: 7
++[<])y{] flips: 9
+bien
++[]<>()-[] depth: 2
++{}x{}y[]- depth: 3
+<>x++--y+- depth: 3
+[]<<>(())> depth: 3
+(xyxy())+- depth: 2
+[[]]+(+-)- depth: 3
+<x[+-]y>[] depth: 4
+({}xy)+-xy depth: 2
+[{}(+-)]xy depth: 3
+<{<>}+->() depth: 3
+mal
+[({})]x><> flips: 1
+({}{}{{<-[ flips: 3
+<<<>(]x[x{ flips: 5
+x-{)(<>([y flips: 7
+{{xy)-(-]> flips: 9
+bien
+[<+xy->[]]xy depth: 4
+{[{}]}<<>>{} depth: 3
++()xy[<>]-+- depth: 3
+<[]++-->x{}y depth: 3
++x(x+-y)y-{} depth: 5
+x[][]xyy([]) depth: 2
+{}+({}<><>)- depth: 3
+<()>+()-[<>] depth: 2
++x<>y-{}+xy- depth: 3
+[][+<>-][][] depth: 3
+mal
++<{{}}(y-)>- flips: 1
+(-xxyy)--)<) flips: 3
+[)+([[{}][]> flips: 5
+(+}y-x>){[{x flips: 7
+(x+[xy}-))x< flips: 9
+bien
+{[{}]}xy[[()]] depth: 3
+[+[{}]x{}y-<>] depth: 4
+[+{}-{}]xy{+-} depth: 3
+{+[[]]-}[]<>xy depth: 4
+()<(<><>)xy>[] depth: 3
+<+<>xy-+<>->() depth: 3
++()()-[<><>]() depth: 2
+({}){xy}++-+-- depth: 2
++(+-)-[xy]{[]} depth: 3
+{}+()-{<>}x+-y depth: 2
+mal
+[x<>-]x[<>]()y flips: 1
+<+(}{}y<xyx>xy flips: 3
+(<-{{()xy}])}[ flips: 5
+])](<>>->y)}{} flips: 7
+<x]{-<(+(}-<{+ flips: 9
+bien
+xy()<<>+-{}[]>[] depth: 2
+({x+-<[]>y})+-<> depth: 5
+(x(){}<[]>y)<{}> depth: 4
+x[](<[]>)y<+-><> depth: 4
+x+({})-<xy>y(){} depth: 4
+[[]{[+-]<>}]<><> depth: 4
+([])(xxyy+()()-) depth: 3
+{<>}{()+-}x()<>y depth: 2
+<>+-<x()y>(<[]>) depth: 3
+(+()-)xxyy()[]{} depth: 3
+mal
+()x(yy([[]])xxyy flips: 1
+[(x>)+-](<>)()>[ flips: 3
+yx++x()-}}<>]<>] flips: 5
+({(y}+-)yx+[{}]- flips: 7
+xx)x{)-}xy]-+{]} flips: 9
+bien
+(xy)x({xy([+-])})y depth: 6
++({()}()())-+-[]() depth: 4
+++{x()y}-<()>[]-{} depth: 5
+{()x{}yxyx<>y++--} depth: 3
+[]<>[<+-[]>xy()]<> depth: 3
+((<>)[+{}xy-]+-)[] depth: 4
+<>x{}<>[]{}y(xyxy) depth: 2
++[<{[[]]}>()xyxy]- depth: 6
+<>[x+-yxy{}]<x[]y> depth: 3
+(()())[[xy{}]]<()> depth: 3
+mal
+<xyx>><>[+-xy](<>) flips: 1
++-x(()))[]x)<>)->y flips: 3
+x[(<[<>>><++{()-+- flips: 5
+{[>(<>{]<>)}xy{y<> flips: 7
++[]-y[xy]]x)-y[+<y flips: 9
+bien
+<[<>]><x+-y+x()y-><> depth: 4
+(<{{}}[xy({})]<>[]>) depth: 5
+([()<xy<>>[]xy]+{}-) depth: 4
+<[{+<>-}<>]+->{}<>{} depth: 5
+[{[]{}}+-+-]()[()]<> depth: 3
+([<>])+{}-{(xy)}[]xy depth: 3
+{[+{}-xy][]}[{}<>][] depth: 4
+[({}[xy+-xy])]<xxyy> depth: 4
+<({}(+-<>+-)<+->){}> depth: 4
+{{{[]}<>({})}}{<>}[] depth: 4
+mal
+{{}<><>}<+<+{}->+()- flips: 1
++++<----x}[]y-{+-}[] flips: 3
+((())<+)<<>-xyxy>}() flips: 5
+[({{+-+()-)(]))+[<{{ flips: 7
++()-)[+-(+-+)y})(>}- flips: 9

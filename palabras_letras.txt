@@ -1,0 +1,153 @@
+bien
+xxyy depth: 2
+xxyy depth: 2
+xyxy depth: 1
+xxyy depth: 2
+xyxy depth: 1
+xxyy depth: 2
+xxyy depth: 2
+xxyy depth: 2
+xxyy depth: 2
+xxyy depth: 2
+mal
+xyxx flips: 1
+xyyy flips: 3
+xyyy flips: 5
+yyyx flips: 7
+xyyy flips: 9
+bien
+xyxxyy depth: 2
+xxxyyy depth: 3
+xyxyxy depth: 1
+xxxyyy depth: 3
+xyxxyy depth: 2
+xyxyxy depth: 1
+xxyyxy depth: 2
+xxyyxy depth: 2
+xxyyxy depth: 2
+xxyyxy depth: 2
+mal
+xxxxyy flips: 1
+xxxxyy flips: 3
+xyyxyy flips: 5
+yxyyxy flips: 7
+yyxyyx flips: 9
+bien
+xxyyxyxy depth: 2
+xxxyyyxy depth: 3
+xxxyyyxy depth: 3
+xxxyyxyy depth: 3
+xyxxxyyy depth: 3
+xxyxxyyy depth: 3
+xxyyxxyy depth: 2
+xxyyxxyy depth: 2
+xxyyxxyy depth: 2
+xyxxyyxy depth: 2
+mal
+xyxyxxxy flips: 1
+xxxyyxxy flips: 3
+yxxyxyyy flips: 5
+yxyyxyyx flips: 7
+yyyyyxyy flips: 9
+bien
+xxyxyxyyxy depth: 2
+xxxyyxyyxy depth: 3
+xxyxyyxxyy depth: 2
+xxxyyxyxyy depth: 3
+xxxxyyyyxy depth: 4
+xxyxyyxxyy depth: 2
+xxyxyxxyyy depth: 3
+xxyxyxyyxy depth: 2
+xxyyxxyxyy depth: 2
+xxyxyyxxyy depth: 2
+mal
+yyxxyxyyxy flips: 1
+xxyyyxyxyy flips: 3
+xyyyyyxyyy flips: 5
+yyxyyyyxxx flips: 7
+yyyyxxyxyx flips: 9
+bien
+xxxyyxxyyyxy depth: 3
+xxyyxyxyxxyy depth: 2
+xyxyxyxxxyyy depth: 3
+xxxxyyyxyyxy depth: 4
+xxxyyxxyyxyy depth: 3
+xxxxyyyxxyyy depth: 4
+xxxyyyxxyyxy depth: 3
+xxxyxyyxyyxy depth: 3
+xxyxyyxyxxyy depth: 2
+xxyyxxxyyxyy depth: 3
+mal
+xxyyxyyxyyxy flips: 1
+xyxyyxyyxyxy flips: 3
+yyxxxyxyyxyy flips: 5
+yyxxxyxxyxyx flips: 7
+yyyxyyxyxyyy flips: 9
+bien
+xxyxxyyyxxxyyy depth: 3
+xxxxyyyyxyxxyy depth: 4
+xxyxyxyxyyxxyy depth: 2
+xyxxxyyxxyyxyy depth: 3
+xxyxyyxxxyyyxy depth: 3
+xxxyxyyyxxxyyy depth: 3
+xxyxyyxxyyxyxy depth: 2
+xxxyyxyyxxyxyy depth: 3
+xxxyyxyyxxyxyy depth: 3
+xyxxxyyxyyxyxy depth: 3
+mal
+xxxyxyxxyyxxyy flips: 1
+xxxxyxyyxxxxxy flips: 3
+xyyxxxyxxxyxyy flips: 5
+xxyyxxyxyyyyyx flips: 7
+xxyyyxyxxxxyyx flips: 9
+bien
+xxyxyyxxyxyyxxyy depth: 2
+xxyxxyyyxxxyyyxy depth: 3
+xxyxyyxxxyxyyxyy depth: 3
+xxxyyyxxxxyyyyxy depth: 4
+xyxyxxxxyyxyyyxy depth: 4
+xxxxxyyyyxxyyxyy depth: 5
+xxyxyyxxyxyxyyxy depth: 2
+xxxyxyxxyyyxyyxy depth: 4
+xxxxxyyyxyyyxyxy depth: 5
+xxyxxxyxyyxyyxyy depth: 4
+mal
+xxxyyxyxyyxyxyyy flips: 1
+xxxxyyyyyyxxxyyy flips: 3
+xxyyyxyxxyxxxyxy flips: 5
+yxxxyxxxxyyxxyyy flips: 7
+xxxyxyyyxxxyxxxx flips: 9
+bien
+xxxyxxxyyyyxyyxyxy depth: 5
+xxyxyyxxyyxxyyxxyy depth: 2
+xyxxyyxxxyyxyyxxyy depth: 3
+xxyxyyxyxxyxyxyyxy depth: 2
+xxyxxyyyxxxxyyyyxy depth: 4
+xyxxyxxyxyyxyyxyxy depth: 3
+xyxxyyxxyyxxyyxxyy depth: 2
+xxxyxyyxxyyyxyxyxy depth: 3
+xyxyxxyyxxyxyyxxyy depth: 2
+xxyxyyxxxyyxyyxxyy depth: 3
+mal
+xxxxyyxyxxyyxxyyxy flips: 1
+xyxxyxyxyyxxxyxxyy flips: 3
+yxxyxxyxyxyyyyxyxy flips: 5
+xxxxxyyxxxxyyxyyyy flips: 7
+yxyyyxyyxyyxxyyyxy flips: 9
+bien
+xxyxyyxyxxxxyxyyyyxy depth: 4
+xyxxyxxyyyxxxyyxyyxy depth: 3
+xyxxxxxyyyxyxxyyyxyy depth: 5
+xyxxxyyxxyyyxxyyxxyy depth: 3
+xxyxxyyxyyxxyxxyyyxy depth: 3
+xxxyyxxyyyxxxyyyxyxy depth: 3
+xxyxyyxxyxyxyyxyxyxy depth: 2
+xxxxxxyyyxyxyyyyxxyy depth: 6
+xxxyxyyxyyxxxyyxyyxy depth: 3
+xyxxxxyyxxyyyxyxxyyy depth: 4
+mal
+xxxyyxyyyxxyyxyyxxyy flips: 1
+xxxyxyxxxyyyxyyxxyxy flips: 3
+xxyyyyxxxyyyxxyyyxxy flips: 5
+xxxxxyyxxxyyyxyxxxyx flips: 7
+xxxxxxxxyyxxxxxyxxxx flips: 9
