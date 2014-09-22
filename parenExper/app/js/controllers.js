@@ -6,6 +6,8 @@
   });
 
   parenExperCtlrs.controller('primeraParteIntroCtlr', function($scope) {
+    $scope.t_expo = 5;       // duracion del estimulo (segs)
+    $scope.t_resp = 5;       // duracion del estimulo (segs)
   });
 
   parenExperCtlrs.controller('primeraParteExperCtlr', function($scope, $timeout) {

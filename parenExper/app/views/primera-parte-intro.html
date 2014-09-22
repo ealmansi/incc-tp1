@@ -3,7 +3,7 @@
     <h1>Procedimiento</h1>
   </div>
   <ul class="instrucciones">
-    <li>Se mostrarán sucesivamente diferentes pantallas, incluyendo cada una de ellas una secuencia formada por paréntesis ( ), llaves { } y corchetes [ ].</li>
+    <li>Se mostrarán diferentes pantallas sucesivamente, incluyendo cada una de ellas una secuencia formada por paréntesis ( ), llaves { } y corchetes [ ].</li>
     <li>Para cada secuencia, usted deberá determinar si la misma se encuentra bien formada; es decir, si los símbolos están correctamente apareados. La secuencia está bien formada si para cada símbolo que abre hay uno opuesto que cierra, y lo que queda encerrado entre el par de símbolos apareado también está bien formado.</li>
     <li>Luego de cada estímulo, se le presentará una pantalla donde deberá responder apretando una de las siguientes teclas:
       <ul class="list-unstyled" style="margin-left:20px;">
@@ -11,7 +11,7 @@
         <li><strong>n</strong> &nbsp;&nbsp;&nbsp; si la secuencia presentada anteriormente <b>NO</b> está correctamente apareada.</li>
       </ul>
     </li>
-    <li>El tiempo de muestra del estímulo y el tiempo en el que deberá dar su respuesta irán variando a lo largo del experimento. Se le notificará tales aspectos antes de comenzar cada trial.</li>
+    <li>La secuencia será presentada por un total de {{t_expo}} segundos, y luego usted dispondrá de {{t_resp}} segundos para responder.</li>
   </ul>
   
   <div class="row">
@@ -27,6 +27,5 @@
     </div>
   </div>
 
-
-  <button ng-click="go('/primera-parte-exper')" class="btn btn-lg btn-default">Empezar</button>
+  <button ng-click="go('/primera-parte-exper')" class="btn btn-lg btn-default">Comenzar</button>
 </div>
