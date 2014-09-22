@@ -1,18 +1,32 @@
 <div class="exper-intro-container">
   <div class="page-header">
-    <h1>Primera parte</h1>
+    <h1>Procedimiento</h1>
   </div>
-  <p class="lead"> El experimento funciona así: </p>
   <ul class="instrucciones">
-    <li>Primero, te mostramos una secuencia formada por varios paréntesis ( ), llaves { } y corchetes [ ]. Por ejemplo, esta: ( ) { ( ) [ ] } .</li>
-    <li>Te damos unos segundos para que la mires bien, y después necesitamos que nos digas si pensás que la secuencia está bien o mal formada.</li>
-    <li>Para responder, solo tenés que apretar la letra S (si) o N (no) de tu teclado.</li>
-    <br/>
-    <p>Nota: decimos que la secuencia está bien formada si para cada símbolo que abre hay uno opuesto que cierra, y lo que queda encerrado entre uno y otro también está bien formado. Por ejemplo, la secuencia anterior está bien formada, y esta otra no: { [ } ( [ ] ) ] . </p>
-    <p>Nota (bis): por las dudas, un par de ejemplos más. <br/>
-    &ensp;Esta está bien: { { } } [ ] ( ) . <br/>
-    &ensp;Esta está mal: } ( { } ) . </p>
+    <li>Se mostrarán sucesivamente diferentes pantallas, incluyendo cada una de ellas una secuencia formada por paréntesis ( ), llaves { } y corchetes [ ].</li>
+    <li>Para cada secuencia, usted deberá determinar si la misma se encuentra bien formada; es decir, si los símbolos están correctamente apareados. La secuencia está bien formada si para cada símbolo que abre hay uno opuesto que cierra, y lo que queda encerrado entre el par de símbolos apareado también está bien formado.</li>
+    <li>Luego de cada estímulo, se le presentará una pantalla donde deberá responder apretando una de las siguientes teclas:
+      <ul class="list-unstyled" style="margin-left:20px;">
+        <li><strong>s</strong> &nbsp;&nbsp;&nbsp; si la secuencia presentada anteriormente está correctamente apareada.</li>
+        <li><strong>n</strong> &nbsp;&nbsp;&nbsp; si la secuencia presentada anteriormente <b>NO</b> está correctamente apareada.</li>
+      </ul>
+    </li>
+    <li>El tiempo de muestra del estímulo y el tiempo en el que deberá dar su respuesta irán variando a lo largo del experimento. Se le notificará tales aspectos antes de comenzar cada trial.</li>
   </ul>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Ejemplo 1</h3>
+      <p><font size=7>( ) ( [ ] )</font></p>
+      <p>Este caso está correctamente apareado, ya que todos los términos definidos por los símbolos (denotados por paréntesis en este ejemplo) están correctamente cerrados.</p>
+    </div>
+    <div class="col-md-6">
+      <h3>Ejemplo 2</h3>
+      <p><font size=7>{ ( ) } <font color=red>(</font> ( )</font></p>
+      <p>Este caso <b>no</b> está correctamente apareado, ya que faltaría cerrar un paréntesis en el segundo término.</p>
+    </div>
+  </div>
+
 
   <button ng-click="go('/primera-parte-exper')" class="btn btn-lg btn-default">Empezar</button>
 </div>
