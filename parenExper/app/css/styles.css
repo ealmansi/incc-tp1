@@ -1,0 +1,34 @@
+.view-container {
+  width:70%;
+}
+
+body button {
+  float: right;
+}
+
+.exper-intro-container .instrucciones {
+  font-size:18px;
+}
+
+.exper-container {
+  padding-top: 20%;
+  padding-left: -20px;
+  width:70%;
+  margin: auto;
+  text-align: center;
+}
+
+.exper-container .secuencia {
+  font-family: "Courier New", Courier, monospace;
+  font-size:36px;
+  letter-spacing: 10px;
+}
+
+.exper-container .pregunta {
+}
+
+.exper-container .center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}

@@ -1,0 +1,18 @@
+<div class="exper-intro-container">
+  <div class="page-header">
+    <h1>Primera parte</h1>
+  </div>
+  <p class="lead"> El experimento funciona así: </p>
+  <ul class="instrucciones">
+    <li>Primero, te mostramos una secuencia formada por varios paréntesis ( ), llaves { } y corchetes [ ]. Por ejemplo, esta: ( ) { ( ) [ ] } .</li>
+    <li>Te damos unos segundos para que la mires bien, y después necesitamos que nos digas si pensás que la secuencia está bien o mal formada.</li>
+    <li>Para responder, solo tenés que apretar la letra S (si) o N (no) de tu teclado.</li>
+    <br/>
+    <p>Nota: decimos que la secuencia está bien formada si para cada símbolo que abre hay uno opuesto que cierra, y lo que queda encerrado entre uno y otro también está bien formado. Por ejemplo, la secuencia anterior está bien formada, y esta otra no: { [ } ( [ ] ) ] . </p>
+    <p>Nota (bis): por las dudas, un par de ejemplos más. <br/>
+    &ensp;Esta está bien: { { } } [ ] ( ) . <br/>
+    &ensp;Esta está mal: } ( { } ) . </p>
+  </ul>
+
+  <button ng-click="go('/primera-parte-exper')" class="btn btn-lg btn-default">Empezar</button>
+</div>
