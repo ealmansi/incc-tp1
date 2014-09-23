@@ -24,6 +24,14 @@
         templateUrl : 'views/segunda-parte-exper.html',
         controller  : 'segundaParteExperCtlr as ctlr'
       })
+      .when('/tercera-parte-intro', {
+        templateUrl : 'views/tercera-parte-intro.html',
+        controller  : 'terceraParteIntroCtlr as ctlr'
+      })
+      .when('/tercera-parte-exper', {
+        templateUrl : 'views/tercera-parte-exper.html',
+        controller  : 'terceraParteExperCtlr as ctlr'
+      })
       .when('/contact', {
         templateUrl : 'views/contact.html',
         controller  : 'contactCtlr as ctlr'
