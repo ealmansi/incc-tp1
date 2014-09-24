@@ -5,6 +5,10 @@
   parenExperCtlrs.controller('conscienteExplicacionCtlr', function($scope, $experimento) {
     $scope.t_expo = $experimento.consciente.t_expo;
     $scope.t_resp = $experimento.consciente.t_resp;
+
+    $scope.avanzar = function () {
+      this.avanzarDesde('consciente-explicacion');
+    }.bind($scope);
   });
 
   parenExperCtlrs.controller('conscienteExperimentoCtlr', function($scope, $timeout, $experimento) {

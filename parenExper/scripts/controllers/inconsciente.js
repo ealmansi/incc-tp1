@@ -6,6 +6,10 @@
     $scope.t_expo = $experimento.inconsciente.t_expo;
     $scope.t_resp = $experimento.inconsciente.t_resp;
     $scope.n_tarea = $experimento.inconsciente.n_tarea;
+
+    $scope.avanzar = function () {
+      this.avanzarDesde('inconsciente-explicacion');
+    }.bind($scope);
   });
 
   parenExperCtlrs.controller('inconscienteExperimentoCtlr', function($scope, $timeout, $experimento) {

@@ -5,6 +5,10 @@
   parenExperCtlrs.controller('inmediatoExplicacionCtlr', function($scope, $experimento) {
     $scope.t_expo = $experimento.inmediato.t_expo;
     $scope.t_resp = $experimento.inmediato.t_resp;
+
+    $scope.avanzar = function () {
+      this.avanzarDesde('inmediato-explicacion');
+    }.bind($scope);
   });
 
   parenExperCtlrs.controller('inmediatoExperimentoCtlr', function($scope, $timeout, $experimento) {
