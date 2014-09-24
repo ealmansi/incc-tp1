@@ -1,5 +1,15 @@
-<div class="exper-container center">
-  <p class="lead preparate" ng-show="preparateVisible">Comenzando...</p>
-  <p class="lead secuencia" ng-show="secuenciaVisible">{{secuencias[indice]}}</p>
-  <p class="lead pregunta" ng-show="preguntaVisible">¿Está bien formada la cadena? (S/N)</p>
+<div class="container-fluid experimento-container">
+
+  <p class="experimento-preparate" ng-show="preparateVisible">
+    Comenzando...
+  </p>
+  
+  <p class="experimento-secuencia" ng-show="secuenciaVisible">
+    {{secuencias[indiceSecuencias]}}
+  </p>
+  
+  <p class="experimento-pregunta" ng-show="preguntaVisible">
+    ¿Está bien formada la cadena? (S/N)
+  </p>
+  
 </div>

@@ -2,34 +2,28 @@
   width:70%;
 }
 
-body button {
-  margin-bottom: 100px;
+.view-container button {
+  margin: 50px 0px;
   float: right;
 }
 
-.exper-intro-container .instrucciones {
-  font-size:18px;
-}
-
-.exper-container {
-  padding-top: 20%;
-  padding-left: -20px;
-  width:70%;
-  margin: auto;
+.experimento-container {
   text-align: center;
 }
+.experimento-container { margin-top: 13vw; }
+.experimento-container .experimento-preparate { font-size: 2vw; }
+.experimento-container .experimento-secuencia { font-size: 3vw; letter-spacing: 1vw; }
+.experimento-container .experimento-pregunta { font-size: 2vw; }
 
-.exper-container .secuencia {
-  font-family: "Courier New", Courier, monospace;
-  font-size:36px;
-  letter-spacing: 10px;
+@media (max-width: 900px) {
+  .experimento-container { margin-top: 18vw; }
+  .experimento-container .experimento-preparate { font-size: 3vw; }
+  .experimento-container .experimento-secuencia { font-size: 5vw; letter-spacing: 1vw; }
+  .experimento-container .experimento-pregunta { font-size: 3vw; }
 }
-
-.exper-container .pregunta {
-}
-
-.exper-container .center {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
+@media (max-width: 400px) {
+  .experimento-container { margin-top: 30vw; }
+  .experimento-container .experimento-preparate { font-size: 5vw; }
+  .experimento-container .experimento-secuencia { font-size: 7vw; letter-spacing: 1vw; }
+  .experimento-container .experimento-pregunta { font-size: 5vw; }
 }

@@ -5,9 +5,9 @@
   parenExperApp.factory('$experimento', function() {
     return {
       inmediato: {
-        t_prev: 500,           // tiempo de espera previo a empezar
-        t_expo: 500,           // tiempo de exposicion al estimulo
-        t_resp: 500,           // tiempo para responder
+        t_prev: 1000,           // tiempo de espera previo a empezar
+        t_expo: 1000,           // tiempo de exposicion al estimulo
+        t_resp: 1000,           // tiempo para responder
         secuencias: [
           '{()}[[]][[][]]',
           '([]){[[]]}[]{}',
@@ -16,9 +16,9 @@
         ],
       },
       consciente: {
-        t_prev: 500,           // tiempo de espera previo a empezar
-        t_expo: 500,           // tiempo de exposicion al estimulo
-        t_resp: 500,           // tiempo para responder
+        t_prev: 1000,           // tiempo de espera previo a empezar
+        t_expo: 1000,           // tiempo de exposicion al estimulo
+        t_resp: 1000,           // tiempo para responder
         secuencias: [
           '{()}[[]][[][]]',
           '([]){[[]]}[]{}',

@@ -23,7 +23,7 @@
     $scope.secuenciaVisible = false;
     $scope.preguntaVisible = false;
     $scope.letrasVisible = false;
-    $scope.indice = 0;
+    $scope.indiceSecuencias = 0;
     $scope.indiceLetras = 0;
 
     $scope.mostrarSecuencia = function() {
@@ -48,8 +48,8 @@
       this.preguntaVisible = true;
       this.tareaVisible = false;
       this.indiceLetras = 0;
-      if (this.indice + 1 < this.secuencias.length) {
-        this.indice = this.indice + 1;
+      if (this.indiceSecuencias + 1 < this.secuencias.length) {
+        this.indiceSecuencias = this.indiceSecuencias + 1;
         $timeout(this.mostrarSecuencia, this.t_resp);
       }
       else {
@@ -74,7 +74,7 @@
       }
     }.bind($scope);
 
-    if ($scope.indice + 1 < $scope.secuencias.length) {
+    if ($scope.indiceSecuencias + 1 < $scope.secuencias.length) {
       $timeout($scope.mostrarSecuencia, $scope.t_prev);
     }
   });
