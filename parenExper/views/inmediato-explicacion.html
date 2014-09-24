@@ -11,7 +11,7 @@
         <li><strong>n</strong> &nbsp;&nbsp;&nbsp; si la secuencia presentada anteriormente <b>NO</b> está correctamente apareada.</li>
       </ul>
     </li>
-    <li>La secuencia será presentada por un total de {{t_expo}} segundos, y luego usted dispondrá de {{t_resp}} segundos para responder.</li>
+    <li>La secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder.</li>
   </ul>
   
   <div class="row">
@@ -27,5 +27,5 @@
     </div>
   </div>
 
-  <button ng-click="go('/primera-parte-exper')" class="btn btn-lg btn-default">Comenzar</button>
+  <button ng-click="avanzarDesde('inmediato-explicacion')" class="btn btn-lg btn-default">Comenzar</button>
 </div>

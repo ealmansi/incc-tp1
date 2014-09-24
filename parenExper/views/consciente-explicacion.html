@@ -4,8 +4,8 @@
   </div>
   <ul class="instrucciones">
     <li>En esta segunda instancia, el procedimiento se mantiene igual que en la primera parte, variando únicamente los tiempos de exposición y respuesta.</li>
-    <li>La secuencia será presentada por un total de {{t_expo}} segundos, y luego usted dispondrá de {{t_resp}} segundos para responder.</li>
+    <li>La secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder.</li>
   </ul>
   
-  <button ng-click="go('/segunda-parte-exper')" class="btn btn-lg btn-default">Comenzar</button>
+  <button ng-click="avanzarDesde('consciente-explicacion')" class="btn btn-lg btn-default">Comenzar</button>
 </div>
