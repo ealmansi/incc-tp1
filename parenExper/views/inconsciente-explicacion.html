@@ -4,21 +4,45 @@
     <h1>Tercera parte</h1>
   </div>
 
-  <ul class="instrucciones">
-    <li>En esta tercera instancia, el procedimiento será diferente. </li>
-    <li>La secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego, antes de dar la respuesta deberá realizar una tarea descripta a continuación.</li>
-  </ul>
-  
-  <h2>Tarea</h2>
-  <ul class="instrucciones">
-  	<li>Diferentes letras irán apareciendo en pantalla, de a una por vez.</li>
-  	<li>Usted deberá responder en cada letra, por <b>sí (tecla s)</b> o por <b>no (tecla n)</b>, si ésta es equivalente a la que apareció {{n_tarea}} muestras atrás</li>
-  </ul>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Procedimiento</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="instrucciones">
+            <li>En esta tercera instancia, el procedimiento será diferente. </li>
+            <li>La secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego, antes de dar la respuesta deberá realizar una tarea descripta a continuación.</li>
+             <li>Una vez finalizada la tarea usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder, sobre el apareamiento de símbolos como en los experimentos anteriores.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-  <ul class="instrucciones">
-	 <li>una vez finalizada la tarea usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder, sobre el apareamiento de símbolos como las dos tareas anteriores.</li>
-  </ul>
-  
-  <button ng-click="avanzar()" class="btn btn-lg btn-default">Comenzar</button>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Tarea</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="instrucciones">
+            <li>Diferentes letras irán apareciendo en pantalla, de a una por vez.</li>
+            <li>Luego de cada una de ellas, se le presentará una pantalla donde deberá responder si la última letra es equivalente a la que apareció {{n_letras}} muestras atrás cliqueando uno de los siguientes botones:
+              <ul class="list-unstyled" style="margin-left:20px;">
+                <li><strong>Sí</strong> &nbsp;&nbsp;&nbsp; si la letra presentada anteriormente es equivalente a la que apareció {{n_letras}} muestras atrás.</li>
+                <li><strong>No</strong> &nbsp;&nbsp;&nbsp;si la letra presentada anteriormente <b>NO</b> apareció {{n_letras}} muestras atrás.</li>
+              </ul>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+      <p>Cuando se encuentre preparado/a, presione 'Comenzar'.</p>
+      <button ng-click="avanzar()" class="btn btn-lg btn-default">Comenzar</button>
+
+  </div>
   
 </div>
