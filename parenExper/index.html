@@ -21,6 +21,7 @@
 
     <script src="scripts/app.js"></script>
     <script src="scripts/factories/experimento.js"></script>
+    <script src="scripts/factories/resultados.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/introduccion.js"></script>
     <script src="scripts/controllers/inmediato.js"></script>
@@ -28,8 +29,8 @@
     <script src="scripts/controllers/inconsciente.js"></script>
   </head>
 
-  <body>
-      <div class="container view-container" ng-controller="mainCtlr" ng-view>
+  <body ng-controller="mainCtlr" ng-keypress="broadcastTeclaPresionada($event)" tabindex="0">
+      <div class="container view-container" ng-view>
       </div>
   </body>
 </html>

@@ -3,6 +3,7 @@
   var parenExperCtlrs = angular.module('parenExperCtlrs');
   
   parenExperCtlrs.controller('mainCtlr', function($scope, $location) {
+
     $scope.avanzarDesde = function(ubicacionActual) {
       var siguiente = {
         'introduccion': '/inm1',
@@ -14,6 +15,10 @@
         'inconsciente-experimento': '/enc',
       };
       $location.path(siguiente[ubicacionActual]);
+    };
+
+    $scope.broadcastTeclaPresionada = function($event) {
+      $scope.$broadcast('tecla-presionada', {keyCode: $event.keyCode});
     };
   });
 

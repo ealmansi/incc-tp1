@@ -14,7 +14,10 @@
 
   parenExperCtlrs.controller('inconscienteExperimentoCtlr', function($scope, $timeout, $experimento) {
     $scope.t_prev = $experimento.inconsciente.t_prev;
+    $scope.t_expo = $experimento.inconsciente.t_expo;
+    $scope.t_resp = $experimento.inconsciente.t_resp;
     $scope.secuencias = $experimento.inconsciente.secuencias;
+    $scope.t_prev_tarea = $experimento.inconsciente.t_prev_tarea;
     $scope.t_expo_tarea = $experimento.inconsciente.t_expo_tarea;
     $scope.t_resp_tarea = $experimento.inconsciente.t_resp_tarea;
     $scope.letras = $experimento.inconsciente.letras;
@@ -31,7 +34,15 @@
       this.secuenciaVisible = true;
       this.preguntaVisible = false;
       this.tareaVisible = false;
-      $timeout(this.mostrarTarea, this.t_expo);
+      $timeout(this.empezarTareaSecundaria, this.t_expo);
+    }.bind($scope);
+
+    $scope.empezarTareaSecundaria = function() {
+      this.preparateVisible = false;
+      this.secuenciaVisible = false;
+      this.preguntaVisible = false;
+      this.tareaVisible = false;
+      $timeout(this.mostrarTarea, this.t_prev_tarea);
     }.bind($scope);
 
     $scope.mostrarTarea = function() {
@@ -59,7 +70,6 @@
       }
     }.bind($scope);
 
-    //rta tarea
     $scope.obtenerRespuestaTarea = function() {
       this.preparateVisible = false;
       this.secuenciaVisible = false;

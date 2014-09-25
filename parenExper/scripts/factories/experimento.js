@@ -15,6 +15,7 @@
           '[(){}][]({}())',
         ],
       },
+
       consciente: {
         t_prev: 1000,           // tiempo de espera previo a empezar
         t_expo: 1000,           // tiempo de exposicion al estimulo
@@ -26,19 +27,21 @@
           '[(){}][]({}())',
         ],
       },
+
       inconsciente: {
-        t_prev: 2000,           // tiempo de espera previo a empezar
-        t_expo: 5000,           // tiempo de exposicion al estimulo
-        t_resp: 5000,           // tiempo para responder
+        t_prev: 1000,           // tiempo de espera previo a empezar
+        t_expo: 1000,           // tiempo de exposicion al estimulo
+        t_resp: 1000,           // tiempo para responder
         secuencias: [
           '{()}[[]][[][]]',
           '([]){[[]]}[]{}',
           '{(())}{{}}[][]',
           '[(){}][]({}())',
         ],
-        n_tarea: 2,         // n de tarea distractoria
-        t_expo_tarea: 500,  //cada letra se muestra 500ms
-        t_resp_tarea: 2000, // la respuesta se da en 2000ms
+        n_tarea: 2,              // n de tarea distractoria
+        t_prev_tarea: 500,       // tiempo de espera antes de la tarea secundaria
+        t_expo_tarea: 500,       // cada letra se muestra 500ms
+        t_resp_tarea: 500,       // la respuesta se da en 2000ms
         letras: [
           'R',
           'C',
