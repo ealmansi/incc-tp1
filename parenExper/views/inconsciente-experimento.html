@@ -1,19 +1,25 @@
 <div class="container-fluid experimento-container">
-
   <p class="experimento-preparate" ng-show="preparateVisible">
     Comenzando...
   </p>
-  
   <p class="experimento-secuencia" ng-show="secuenciaVisible">
     {{secuencias[indiceSecuencias]}}
   </p>
-  
-  <p class="experimento-tarea" ng-show="tareaVisible">
+  <p class="experimento-letra" ng-show="letraVisible">
     {{letras[indiceLetras]}}
   </p>
-  
-  <p class="experimento-pregunta" ng-show="preguntaVisible">
-    ¿Estaba bien formada la cadena previa? (S/N)
-  </p>
-  
+  <div class="experimento-pregunta" ng-show="preguntaVisible">
+    <p>
+      ¿Estaba bien formada la cadena previa?
+    </p>
+    <button ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg">Si</button>
+    <button ng-click="registrarRespuesta('No')" class="btn btn-default btn-lg">No</button>
+  </div>
+  <div class="experimento-pregunta" ng-show="preguntaLetraVisible">
+    <p>
+      ¿Es la misma letra que la anteúltima?
+    </p>
+    <button ng-click="registrarRespuestaLetra('Si')" class="btn btn-default btn-lg">Si</button>
+    <button ng-click="registrarRespuestaLetra('No')" class="btn btn-default btn-lg">No</button>
+  </div>
 </div>

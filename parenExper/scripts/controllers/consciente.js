@@ -15,7 +15,6 @@
     $scope.t_prev = $experimento.consciente.t_prev;
     $scope.t_expo = $experimento.consciente.t_expo;
     $scope.t_resp = $experimento.consciente.t_resp;
-    $scope.t_buff = $experimento.consciente.t_buff;
     $scope.secuencias = $experimento.consciente.secuencias;
     $scope.respuestas = $resultados.consciente.respuestas;
 
@@ -60,7 +59,7 @@
             this.promise = null;
           }
           this.respuestas.push([this.indiceSecuencias, respuesta]);
-          this.promise = $timeout(this.ponerProximaSecuencia, this.t_buff);
+          this.ponerProximaSecuencia();
       }
     }.bind($scope);
 
