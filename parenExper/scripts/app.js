@@ -42,4 +42,16 @@
       })
   });
 
+  parenExperApp.run(function ($templateCache, $http) {
+    $http.get('views/introduccion.html', {cache: $templateCache});
+    $http.get('views/inmediato-explicacion.html', {cache: $templateCache});
+    $http.get('views/inmediato-experimento.html', {cache: $templateCache});
+    $http.get('views/consciente-explicacion.html', {cache: $templateCache});
+    $http.get('views/consciente-experimento.html', {cache: $templateCache});
+    $http.get('views/inconsciente-explicacion.html', {cache: $templateCache});
+    $http.get('views/inconsciente-experimento.html', {cache: $templateCache});
+    $http.get('views/encuesta.html', {cache: $templateCache});
+    $http.get('views/fin.html', {cache: $templateCache});
+  });
+
 })();
