@@ -15,8 +15,9 @@
     $scope.t_prev = $experimento.inmediato.t_prev;
     $scope.t_expo = $experimento.inmediato.t_expo;
     $scope.t_resp = $experimento.inmediato.t_resp;
+    $scope.t_buff = $experimento.inmediato.t_buff;
     $scope.secuencias = $experimento.inmediato.secuencias;
-    $scope.respuestas = $resultados.respuestasInmediato;
+    $scope.respuestas = $resultados.inmediato.respuestas;
 
     $scope.avanzar = function () {
       this.avanzarDesde('inmediato-experimento');
@@ -70,7 +71,7 @@
             this.promise = null;
           }
           this.respuestas.push([this.indiceSecuencias, respuesta]);
-          this.ponerProximaSecuencia();
+          this.promise = $timeout(this.ponerProximaSecuencia, this.t_buff);
       }
     }.bind($scope);
 

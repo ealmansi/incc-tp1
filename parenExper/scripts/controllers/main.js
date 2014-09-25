@@ -10,9 +10,10 @@
         'inmediato-explicacion': '/inm2',
         'inmediato-experimento': '/con1',
         'consciente-explicacion': '/con2',
-        'consciente-experimento': '/inc1',
+        'consciente-experimento': '/enc',   //'/inc1',
         'inconsciente-explicacion': '/inc2',
         'inconsciente-experimento': '/enc',
+        'encuesta': '/fin',
       };
       $location.path(siguiente[ubicacionActual]);
     };

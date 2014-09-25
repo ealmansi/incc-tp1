@@ -1,13 +1,31 @@
 <div class="container-fluid introduccion-container">
 
   <div class="page-header">
-    <h1>Introducción</h1>
+    <h1>Bienvenido/a</h1>
   </div>
-  <p class="lead">Bienvenido, usted está por participar de un experimento confeccionado por estudiantes de la materia “Introducción a la neurociencia Cognitiva y Computacional”. La idea del mismo es dilucidar ciertos aspectos del procesamiento cognitivo humano. </p>
-
-  <p class="lead"> Toda la información y datos que surjan de este experimentos serán guardados en nuestra base de datos, respetando las normas bioéticas vigentes al día de la fecha, y respetando la confidencialidad que requiere. <br/>
-  Si está de acuerdo, presione 'Continuar'.</p>
-
-  <button ng-click="avanzarDesde('introduccion')" class="btn btn-lg btn-default">Continuar</button>
   
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">De qué se trata? Cuánto dura?</h3>
+        </div>
+        <div class="panel-body">
+          <p>Usted está por participar de un experimento desarrollado por estudiantes de la materia “Introducción a la Neurociencia Cognitiva y Computacional”, siendo la finalidad del mismo la de dilucidar ciertos aspectos del procesamiento cognitivo humano. El experimento es muy sencillo y tiene una duración aproximada de 10 minutos, pero es importante que sea realizado en un ambiente tranquilo y sin grandes distracciones.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Anónimo y confidencial</h3>
+        </div>
+        <div class="panel-body">
+          <p>Toda la información y datos que surjan de este experimento serán guardados en nuestra base de datos de forma completamente anónima y confidencial, respetando las normas bioéticas vigentes al día de la fecha.</p>
+        </div>
+      </div>
+      <p>Si está de acuerdo, presione 'Continuar'.</p>
+      <button ng-click="avanzarDesde('introduccion')" class="btn btn-lg btn-default">Continuar</button>
+    </div>
+  </div>
 </div>

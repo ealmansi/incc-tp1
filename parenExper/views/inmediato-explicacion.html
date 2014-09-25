@@ -4,31 +4,50 @@
     <h1>Primera parte</h1>
   </div>
   
-  <ul class="instrucciones">
-    <li>Se mostrarán diferentes pantallas sucesivamente, incluyendo en cada una de ellas una secuencia formada por paréntesis ( ), llaves { } y corchetes [ ].</li>
-    <li>Para cada secuencia, usted deberá determinar si la misma se encuentra bien formada; es decir, si los símbolos están correctamente apareados. Más precisamente, la secuencia está bien formada si para cada símbolo que abre hay uno opuesto que cierra, y lo que queda encerrado entre el par de símbolos apareado también está bien formado.</li>
-    <li>Luego de cada estímulo, se le presentará una pantalla donde deberá responder apretando una de las siguientes teclas:
-      <ul class="list-unstyled" style="margin-left:20px;">
-        <li><strong>s</strong> &nbsp;&nbsp;&nbsp; si la secuencia presentada anteriormente está correctamente apareada.</li>
-        <li><strong>n</strong> &nbsp;&nbsp;&nbsp; si la secuencia presentada anteriormente <b>NO</b> está correctamente apareada.</li>
-      </ul>
-    </li>
-    <li>La secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder.</li>
-  </ul>
-  
   <div class="row">
     <div class="col-md-6">
-      <h3>Ejemplo 1</h3>
-      <p><font size=7>( ) ( [ ] )</font></p>
-      <p>Este caso está correctamente apareado, ya que todos los términos definidos por los símbolos (denotados por paréntesis y corchetes en este ejemplo) están correctamente cerrados.</p>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Procedimiento</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="instrucciones">
+            <li>Se mostrarán diferentes pantallas en forma sucesiva, presentando cada una de ellas una secuencia formada por paréntesis ( ), llaves { } y corchetes [ ].</li>
+            <li>Para cada secuencia, usted deberá determinar si los símbolos que en ella aparecen se encuentran correctamente apareados. Más precisamente, decimos que la secuencia se encuentra bien formada si para cada símbolo que abre hay uno opuesto que cierra, y lo que queda encerrado entre el par de símbolos apareado también está bien formado.</li>
+            <li>Luego de cada estímulo, se le presentará una pantalla donde deberá responder la pregunta apretando una de las siguientes teclas:
+              <ul class="list-unstyled" style="margin-left:20px;">
+                <li><strong>s</strong> &nbsp;&nbsp;&nbsp; si la secuencia presentada anteriormente se encuentra bien formada.</li>
+                <li><strong>n</strong> &nbsp;&nbsp;&nbsp; si la secuencia presentada anteriormente <b>NO</b> se encuentra bien formada.</li>
+              </ul>
+            </li>
+            <li>Cada secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder.</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
-      <h3>Ejemplo 2</h3>
-      <p><font size=7>{ ( ) } <font color=red>(</font> ( )</font></p>
-      <p>Este caso <b>no</b> está correctamente apareado, ya que faltaría cerrar un paréntesis en el segundo término.</p>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Ejemplo 1</h3>
+        </div>
+        <div class="panel-body">
+          <span class="secuencia">( ) ( [ ] )</span>
+          <p>Esta secuencia está correctamente apareada, ya que todos los términos definidos por los símbolos (denotados por paréntesis y corchetes en este ejemplo) están correctamente cerrados.</p>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Ejemplo 2</h3>
+        </div>
+        <div class="panel-body">
+          <span class="secuencia">{ ( ) } <font color=red>(</font> ( )</span>
+          <p>Esta secuencia <b>no</b> está correctamente apareada, ya que faltaría cerrar un paréntesis en el segundo término.</p>
+        </div>
+      </div>
+      <p>Cuando se encuentre preparado/a, presione 'Comenzar'.</p>
+      <button ng-click="avanzar()" class="btn btn-lg btn-default">Comenzar</button>
     </div>
   </div>
 
-  <button ng-click="avanzar()" class="btn btn-lg btn-default">Comenzar</button>
 
 </div>

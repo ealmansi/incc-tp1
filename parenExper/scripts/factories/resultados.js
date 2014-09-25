@@ -4,9 +4,18 @@
 
   parenExperApp.factory('$resultados', function() {
     return {
-      respuestasInmediato: [],
-      respuestasConsciente: [],
-      respuestasInconsciente: [],
+      inmediato: {
+        respuestas: [],
+      },
+      consciente: {
+        respuestas: [],
+      },
+      inconsciente: {
+        respuestas: [],
+        respuestasLetras: [],
+      },
+      encuesta: {
+      },
     };
   });
 

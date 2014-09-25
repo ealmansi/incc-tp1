@@ -1,0 +1,83 @@
+<div class="container-fluid encuesta-container">
+  <div class="page-header">
+    <h1>Último paso</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Relevamiento de datos</h3>
+        </div>
+        <div class="panel-body">
+          <p>Para terminar, por favor complete este breve formulario. Le recordamos que sus datos se trataran de forma completamente anónima y confidencial.</p>
+          <p>Adicionalmente, puede ayudarnos a mejorar este experimento dejando un comentario de forma opcional con observaciones y/o sugerencias.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Formulario</h3>
+        </div>
+        <div class="panel-body">
+          <form name="formularioEncuesta">
+            <div class="form-group">
+              <label class="control-label">Edad:*</label>
+              <input type="number" name="edad" style="width:40px;" ng-model="encuesta.edad" required />
+            </div>
+            <div class="form-group">
+              <label class="control-label">Sexo:*</label>
+              <label class="radio-inline">
+                <input type="radio" name="sexo" id="inlineRadio1" value="femenino" ng-model="encuesta.sexo" required> Femenino
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="sexo" id="inlineRadio1" value="masculino" ng-model="encuesta.sexo" required> Masculino
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Estudios:*</label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="matematica" value="matematica" ng-model="encuesta.estudios.matematica"> Matemática
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="fisica" value="fisica" ng-model="encuesta.estudios.fisica"> Física
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="biologia" value="biologia" ng-model="encuesta.estudios.biologia"> Biología
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="computacion" value="computacion" ng-model="encuesta.estudios.computacion"> Computación
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="quimica" value="quimica" ng-model="encuesta.estudios.quimica"> Química
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="psicologia" value="psicologia" ng-model="encuesta.estudios.psicologia"> Psicología
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="ingenieria" value="ingenieria" ng-model="encuesta.estudios.ingenieria"> Ingeniería
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="arquitectura" value="arquitectura" ng-model="encuesta.estudios.arquitectura"> Arquitectura
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="otros" value="otros" ng-model="encuesta.estudios.otros"> Otros (indicar abajo)
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Cantidad de horas por día de programación:*</label>
+              <input type="number" name="cantHorasProg" style="width:40px;" ng-model="encuesta.cantHorasProg" required />
+            </div>
+            <div class="form-group">
+              <label class="control-label">Comentario:</label>
+              <textarea class="form-control" rows="3" ng-model="encuesta.comentario"></textarea>
+            </div>
+            <button ng-click="enviarFormulario()" class="btn btn-default"
+              ng-disabled="formularioEncuesta.$invalid">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

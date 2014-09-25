@@ -1,6 +1,22 @@
 .view-container {
   width:70%;
+  font-size: 16px;
 }
+
+.secuencia {
+  font-size: 21px;
+}
+
+/*.view-container p {
+}
+
+.view-container .secuencia {
+  font-size: 26px;
+}
+
+.view-container li {
+  font-size: 16px;
+}*/
 
 .introduccion-container button {
   margin: 50px 0px;

@@ -4,11 +4,26 @@
     <h1>Segunda parte</h1>
   </div>
   
-  <ul class="instrucciones">
-    <li>En esta segunda instancia, el procedimiento se mantiene igual que en la primera parte, variando únicamente los tiempos de exposición y respuesta.</li>
-    <li>La secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder.</li>
-  </ul>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Procedimiento</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="instrucciones">
+            <li>En esta segunda instancia, el procedimiento se mantiene igual que en la primera parte, variando únicamente los tiempos de exposición y respuesta.</li>
+            <li>La secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <p>Cuando se encuentre preparado/a, presione 'Comenzar'.</p>
+      <button ng-click="avanzar()" class="btn btn-lg btn-default">Comenzar</button>
+    </div>
+  </div>
+
   
-  <button ng-click="avanzar()" class="btn btn-lg btn-default">Comenzar</button>
   
 </div>

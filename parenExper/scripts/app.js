@@ -1,6 +1,6 @@
 (function(){
   
-  var parenExperApp = angular.module('parenExperApp', ['ngRoute', 'parenExperCtlrs']);
+  var parenExperApp = angular.module('parenExperApp', ['ngRoute', 'parenExperCtlrs', 'firebase']);
   var parenExperCtlrs = angular.module('parenExperCtlrs', []);
 
   parenExperApp.config(function($routeProvider) {
@@ -32,6 +32,13 @@
       .when('/inc2', {
         templateUrl : 'views/inconsciente-experimento.html',
         controller  : 'inconscienteExperimentoCtlr'
+      })
+      .when('/enc', {
+        templateUrl : 'views/encuesta.html',
+        controller  : 'encuestaCtlr'
+      })
+      .when('/fin', {
+        templateUrl : 'views/fin.html',
       })
   });
 
