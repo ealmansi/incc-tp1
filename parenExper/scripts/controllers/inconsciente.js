@@ -143,14 +143,14 @@
             $timeout.cancel(this.promise);
             this.promise = null;
           }
-          this.respuestasLetras.push([this.indiceLetras, respuesta]);
+          this.respuestasLetras.push([this.indiceGruposLetras, this.indiceLetras, respuesta]);
           this.ponerProximaLetra();
       }
     }.bind($scope);
 
     $scope.anularRespuestaLetra = function() {
       if (this.preguntaLetraVisible === true) {
-        this.respuestasLetras.push([this.indiceLetras, 'X']);
+        this.respuestasLetras.push([this.indiceGruposLetras, this.indiceLetras, 'X']);
         this.ponerProximaLetra();
       }
     }.bind($scope);
