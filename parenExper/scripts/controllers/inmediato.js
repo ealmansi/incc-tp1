@@ -23,17 +23,6 @@
       this.avanzarDesde('inmediato-experimento');
     }.bind($scope);
 
-    $scope.$on('tecla-presionada', function(event, args) {
-      if ('keyCode' in args) {
-        if (args.keyCode == 115) {
-          this.registrarRespuesta('S');
-        }
-        else if (args.keyCode == 110) {
-          this.registrarRespuesta('N');
-        }
-      }
-    }.bind($scope));
-
     $scope.preparateVisible = true;
     $scope.secuenciaVisible = false;
     $scope.preguntaVisible = false;

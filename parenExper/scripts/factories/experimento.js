@@ -8,7 +8,7 @@
         t_prev: 2000,           // tiempo de espera previo a empezar
         t_expo: 2000,           // tiempo de exposicion al estimulo
         t_resp: 2000,           // tiempo para responder
-        t_buff: 200,            // tiempo buffer despues de apretar una tecla
+        t_buff: 50,             // tiempo buffer despues de apretar una tecla
         secuencias: [
           '{()}[[]][[][]]',
           '([]){[[]]}[]{}',
@@ -21,7 +21,7 @@
         t_prev: 1000,           // tiempo de espera previo a empezar
         t_expo: 4000,           // tiempo de exposicion al estimulo
         t_resp: 4000,           // tiempo para responder
-        t_buff: 200,            // tiempo buffer despues de apretar una tecla
+        t_buff: 50,             // tiempo buffer despues de apretar una tecla
         secuencias: [
           '{()}[[]][[][]]',
           '([]){[[]]}[]{}',

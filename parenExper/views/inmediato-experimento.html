@@ -11,5 +11,8 @@
   <p class="experimento-pregunta" ng-show="preguntaVisible">
     ¿Estaba bien formada la cadena previa? (S/N)
   </p>
+
+  <button ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg" ng-show="preguntaVisible">Si</button>
+  <button ng-click="registrarRespuesta('No')" class="btn btn-default btn-lg" ng-show="preguntaVisible">No</button>
   
 </div>
