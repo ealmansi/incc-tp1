@@ -44,10 +44,13 @@
         t_resp_letras: 1000,       // la respuesta se da en 2000ms
         t_buff_letras: 500,       // intervalo despues de responder la ultima letra
         gruposLetras: [
-          ['R','C','A','R','T',],//'M','R','R','E','C','A','R',],
-          ['R','E','C','A','R',],//'R','C','A','R','T','M','R',],
-          ['E','C','A','R','C',],//'A','R','R','T','M','R','R',],
-        ],
+          ['T','V','Z','V','V','R','W','R','T','R','T','T','R','U','T'],// 4 2-back, 2 1-back, 2 3-back
+          ['C','F','C','F','Z','H','F','F','O','G','O','P','W','P','P'],// 4 2-back, 2 1-back, 2 3-back 
+          ['N','N','G','N','D','S','D','D','G','Y','G','D','G','W','Y'],// 4 2-back, 2 1-back, 2 3-back 
+          ['O','C','Z','C','C','R','W','R','O','R','O','O','R','U','O'],// 4 2-back, 2 1-back, 2 3-back 
+          ['F','F','G','F','D','S','D','D','G','Y','G','D','G','W','Y'],// 4 2-back, 2 1-back, 2 3-back 
+          ['C','E','C','E','Z','H','E','E','O','G','O','A','W','A','A'],// 4 2-back, 2 1-back, 2 3-back 
+        ]
       },
     };
   });
