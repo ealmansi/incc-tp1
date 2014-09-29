@@ -7,7 +7,6 @@
     $routeProvider
       .when('/', {
         templateUrl : 'views/introduccion.html',
-        controller  : 'introduccionCtlr'
       })
       .when('/inm1', {
         templateUrl : 'views/inmediato-explicacion.html',
