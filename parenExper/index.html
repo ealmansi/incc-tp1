@@ -6,34 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>INCC 2014</title>
-
     <link rel="icon" href="images/favicon.ico">
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/third-party/bootstrap.min.css" />
     <link rel="stylesheet" href="styles/third-party/font-awesome.css" />
-
     <script src="scripts/third-party/jquery-1.11.1.min.js"></script>
     <script src="scripts/third-party/angular.min.js"></script>
     <script src="scripts/third-party/angular-route.min.js"></script>
     <script src="scripts/third-party/firebase.js"></script>
     <script src="scripts/third-party/angularfire.min.js"></script>
-
-
     <script src="scripts/app.js"></script>
     <script src="scripts/factories/experimento.js"></script>
     <script src="scripts/factories/resultados.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/introduccion.js"></script>
     <script src="scripts/controllers/inmediato.js"></script>
     <script src="scripts/controllers/consciente.js"></script>
     <script src="scripts/controllers/inconsciente.js"></script>
     <script src="scripts/controllers/encuesta.js"></script>
   </head>
-
-  <body ng-controller="mainCtlr" ng-keypress="broadcastTeclaPresionada($event)" tabindex="0">
+  <body ng-controller="mainCtlr">
       <div class="container view-container" ng-view>
       </div>
   </body>

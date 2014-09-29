@@ -17,10 +17,6 @@
       };
       $location.path(siguiente[ubicacionActual]);
     };
-
-    $scope.broadcastTeclaPresionada = function($event) {
-      $scope.$broadcast('tecla-presionada', {keyCode: $event.keyCode});
-    };
   });
 
 })();
