@@ -12,6 +12,18 @@
     }.bind($scope);
   });
 
+  parenExperCtlrs.controller('MenuCtrl', function () {});
+  parenExperCtlrs.directive('focusIf', [function () {
+      return function focusIf(scope, element, attr) {
+          scope.$watch(attr.focusIf, function (newVal) {
+              if (newVal) {
+                  element[0].focus();
+                  // You can write element.focus() if jQuery is available
+              }
+          });
+      }
+  }]);
+
   parenExperCtlrs.controller('inconscienteExperimentoCtlr', function($scope, $timeout, $experimento, $resultados) {
     $scope.t_prev = $experimento.inconsciente.t_prev;
     $scope.t_expo = $experimento.inconsciente.t_expo;
@@ -68,7 +80,17 @@
       this.promise = $timeout(this.anularRespuesta, this.t_resp);
     }.bind($scope);
     
-    $scope.registrarRespuesta = function(respuesta) {
+    $scope.registrarRespuesta = function(keyCode) {
+      if(keyCode===78){
+        respuesta = "No";
+      }
+      else if (keyCode === 83)
+      {
+        respuesta = "Si";
+      }
+      else {
+        respuesta = "X";
+      }
       if (this.preguntaVisible === true) {
           if (this.promise !== null) {
             $timeout.cancel(this.promise);
@@ -137,7 +159,17 @@
       }
     }.bind($scope);
       
-    $scope.registrarRespuestaLetra = function(respuesta) {
+    $scope.registrarRespuestaLetra = function(keyCode) {
+      if(keyCode===78){
+        respuesta = "No";
+      }
+      else if (keyCode === 83)
+      {
+        respuesta = "Si";
+      }
+      else {
+        respuesta = "X";
+      }
       if (this.preguntaLetraVisible === true) {
           if (this.promise !== null) {
             $timeout.cancel(this.promise);

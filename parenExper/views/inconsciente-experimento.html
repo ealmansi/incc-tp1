@@ -8,14 +8,12 @@
   <p class="experimento-letra" ng-show="letraVisible">
     {{letras[indiceLetras]}}
   </p>
-  <div class="experimento-pregunta" ng-show="preguntaVisible">
+  <div class="experimento-pregunta" ng-show="preguntaVisible" tabindex="0" focus-if="preguntaVisible" ng-keydown="registrarRespuesta($event.keyCode)">
     <p>
       ¿Estaba bien formada la cadena previa?
     </p>
-    <button ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg">Si</button>
-    <button ng-click="registrarRespuesta('No')" class="btn btn-default btn-lg">No</button>
   </div>
-  <div class="experimento-pregunta" ng-show="preguntaLetraVisible">
+  <div class="experimento-pregunta" ng-show="preguntaLetraVisible" tabindex="0" focus-if="preguntaLetraVisible" ng-keydown="registrarRespuestaLetra($event.keyCode)">
     <p>
       ¿Es la misma letra que la anteúltima?
     </p>

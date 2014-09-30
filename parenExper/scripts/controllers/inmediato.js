@@ -11,6 +11,18 @@
     }.bind($scope);
   });
 
+  parenExperCtlrs.controller('MenuCtrl', function () {});
+  parenExperCtlrs.directive('focusIf', [function () {
+      return function focusIf(scope, element, attr) {
+          scope.$watch(attr.focusIf, function (newVal) {
+              if (newVal) {
+                  element[0].focus();
+                  // You can write element.focus() if jQuery is available
+              }
+          });
+      }
+  }]);
+
   parenExperCtlrs.controller('inmediatoExperimentoCtlr', function($scope, $timeout, $experimento, $resultados) {
     $scope.t_prev = $experimento.inmediato.t_prev;
     $scope.t_expo = $experimento.inmediato.t_expo;
@@ -38,6 +50,12 @@
       }
     }.bind($scope);
 
+    // $scope.clickOnUpload = function () {
+    //   $timeout(function() {
+    //   angular.element('#hola').triggerHandler('click');
+    //   }, 100);
+    // };
+
     $scope.comenzarExposicion = function() {
       this.preparateVisible = false;
       this.secuenciaVisible = true;
@@ -52,7 +70,17 @@
       this.promise = $timeout(this.anularRespuesta, this.t_resp);
     }.bind($scope);
     
-    $scope.registrarRespuesta = function(respuesta) {
+    $scope.registrarRespuesta = function(keyCode) {
+      if(keyCode===78){
+        respuesta = "No";
+      }
+      else if (keyCode === 83)
+      {
+        respuesta = "Si";
+      }
+      else {
+        respuesta = "X";
+      }
       if (this.preguntaVisible === true) {
           if (this.promise !== null) {
             $timeout.cancel(this.promise);

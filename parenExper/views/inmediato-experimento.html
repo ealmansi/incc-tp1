@@ -5,11 +5,10 @@
   <p class="experimento-secuencia" ng-show="secuenciaVisible">
     {{secuencias[indiceSecuencias]}}
   </p>
-  <div class="experimento-pregunta" ng-show="preguntaVisible">
-    <p>
-      ¿Estaba bien formada la cadena previa?
-    </p>
+  <div class="experimento-pregunta" ng-show="preguntaVisible" tabindex="0" focus-if="preguntaVisible" ng-keydown="registrarRespuesta($event.keyCode)">
+      <p>¿Estaba bien formada la cadena previa?</p>
     <button ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg">Si</button>
     <button ng-click="registrarRespuesta('No')" class="btn btn-default btn-lg">No</button>
   </div>
 </div>
+</script>
