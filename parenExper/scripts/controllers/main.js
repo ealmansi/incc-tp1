@@ -8,9 +8,7 @@
       var siguiente = {
         'introduccion': '/inm1',
         'inmediato-explicacion': '/inm2',
-        'inmediato-experimento': '/con1',
-        'consciente-explicacion': '/con2',
-        'consciente-experimento': '/inc1',
+        'inmediato-experimento': '/inc1',
         'inconsciente-explicacion': '/inc2',
         'inconsciente-experimento': '/enc',
         'encuesta': '/fin',

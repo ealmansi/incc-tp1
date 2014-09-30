@@ -7,9 +7,6 @@
       inmediato: {
         respuestas: [],
       },
-      consciente: {
-        respuestas: [],
-      },
       inconsciente: {
         respuestas: [],
         respuestasLetras: [],
