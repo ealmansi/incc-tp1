@@ -37,6 +37,9 @@
     $scope.gruposLetras = $experimento.inconsciente.gruposLetras;
     $scope.respuestasLetras = $resultados.inconsciente.respuestasLetras;
 
+
+    var start, end;
+
     $scope.avanzar = function () {
       this.avanzarDesde('inconsciente-experimento');
     }.bind($scope);
@@ -53,6 +56,8 @@
     $scope.indiceLetras = -1;
 
     $scope.ponerProximaSecuencia = function() {
+      $('#no').css("background-color", "white");
+      $('#si').css("background-color", "white");
       if (this.indiceSecuencias + 1 < this.secuencias.length) {
         this.indiceSecuencias = this.indiceSecuencias + 1;
         this.comenzarExposicion();
@@ -60,6 +65,7 @@
       else {
         this.avanzar();
       }
+      start = (new Date()).getTime();
     }.bind($scope);
 
     $scope.comenzarExposicion = function() {
@@ -81,12 +87,16 @@
     }.bind($scope);
     
     $scope.registrarRespuesta = function(keyCode) {
-      if(keyCode===78){
+      end = (new Date()).getTime();
+ 
+      if(keyCode===78){ //codigo del No
         respuesta = "No";
+        $('#no').css("background-color", "orange");
       }
-      else if (keyCode === 83)
+      else if (keyCode === 83) //codigo del Si
       {
         respuesta = "Si";
+        $('#si').css("background-color", "lightgreen");
       }
       else {
         respuesta = "X";
@@ -97,7 +107,7 @@
             this.promise = null;
           }
           this.respuestas.push([this.indiceSecuencias, respuesta]);
-          this.ponerProximaSecuencia();
+          this.promise = $timeout(this.ponerProximaSecuencia, 300);
       }
     }.bind($scope);
 
@@ -121,6 +131,8 @@
     }.bind($scope);
 
     $scope.ponerProximaLetra = function() {
+      $('#noL').css("background-color", "white");
+      $('#siL').css("background-color", "white");
       if (this.indiceLetras + 1 < this.letras.length) {
         this.indiceLetras = this.indiceLetras + 1;
         this.comenzarExposicionLetra();
@@ -160,12 +172,15 @@
     }.bind($scope);
       
     $scope.registrarRespuestaLetra = function(keyCode) {
-      if(keyCode===78){
+ 
+      if(keyCode===78){ //codigo del No
         respuesta = "No";
+        $('#noL').css("background-color", "orange");
       }
-      else if (keyCode === 83)
+      else if (keyCode === 83) //codigo del Si
       {
         respuesta = "Si";
+        $('#siL').css("background-color", "lightgreen");
       }
       else {
         respuesta = "X";
@@ -175,8 +190,8 @@
             $timeout.cancel(this.promise);
             this.promise = null;
           }
-          this.respuestasLetras.push([this.indiceGruposLetras, this.indiceLetras, respuesta]);
-          this.ponerProximaLetra();
+          this.respuestasLetras.push([this.indiceGruposLetras, this.indiceLetras, respuesta, end-start]);
+          this.promise = $timeout(this.ponerProximaLetra, 300);
       }
     }.bind($scope);
 

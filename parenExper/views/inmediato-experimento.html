@@ -7,8 +7,8 @@
   </p>
   <div class="experimento-pregunta" ng-show="preguntaVisible" tabindex="0" focus-if="preguntaVisible" ng-keydown="registrarRespuesta($event.keyCode)">
       <p>¿Estaba bien formada la cadena previa?</p>
-    <button ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg">Si</button>
-    <button ng-click="registrarRespuesta('No')" class="btn btn-default btn-lg">No</button>
+    <button id="si" style="color: green;" ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg">Si</button>
+    <button id="no" style="color: red;" ng-click="registrarRespuesta('No')" class="btn btn-default btn-lg">No</button>
   </div>
 </div>
 </script>

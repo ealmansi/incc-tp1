@@ -47,6 +47,8 @@
     $scope.indiceSecuencias = -1;
 
     $scope.ponerProximaSecuencia = function() {
+      $('#no').css("background-color", "white");
+      $('#si').css("background-color", "white");
       if (this.indiceSecuencias + 1 < this.secuencias.length) {
         this.indiceSecuencias = this.indiceSecuencias + 1;
         this.comenzarExposicion();
@@ -83,15 +85,14 @@
     $scope.registrarRespuesta = function(keyCode) {
       end = (new Date()).getTime();
  
-      alert(end - start);
-
-
       if(keyCode===78){ //codigo del No
         respuesta = "No";
+        $('#no').css("background-color", "orange");
       }
       else if (keyCode === 83) //codigo del Si
       {
         respuesta = "Si";
+        $('#si').css("background-color", "lightgreen");
       }
       else {
         respuesta = "X";
@@ -102,7 +103,7 @@
             this.promise = null;
           }
           this.respuestas.push([this.indiceSecuencias, respuesta, end-start]);
-          this.ponerProximaSecuencia();
+          this.promise = $timeout(this.ponerProximaSecuencia, 300);
       }
     }.bind($scope);
 
