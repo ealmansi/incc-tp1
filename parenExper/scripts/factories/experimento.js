@@ -6,7 +6,9 @@
     return {
       inmediato: {
         t_prev: 1000,           // tiempo de espera previo a empezar
-        t_expo: 300,           // tiempo de exposicion al estimulo
+        t_expo_6: 300,
+        t_expo_12: 1200,
+        t_expo_24: 2400,           // tiempo de exposicion al estimulo
         t_resp: 1000,           // tiempo para responder
         secuencias: [
           '){{}{)',

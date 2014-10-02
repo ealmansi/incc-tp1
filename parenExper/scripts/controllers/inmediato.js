@@ -31,7 +31,11 @@
  
 
     $scope.t_prev = $experimento.inmediato.t_prev;
-    $scope.t_expo = $experimento.inmediato.t_expo;
+    $scope.t_expo_6 = $experimento.inmediato.t_expo_6;
+    $scope.t_expo_12 = $experimento.inmediato.t_expo_12;
+    $scope.t_expo_24 = $experimento.inmediato.t_expo_24;
+
+
     $scope.t_resp = $experimento.inmediato.t_resp;
     $scope.secuencias = $experimento.inmediato.secuencias;
     $scope.respuestas = $resultados.inmediato.respuestas;
@@ -68,7 +72,18 @@
       this.preparateVisible = false;
       this.secuenciaVisible = true;
       this.preguntaVisible = false;
-      this.promise = $timeout(this.terminarExposicion, this.t_expo);
+      var t_expo = 0;
+      var largo = $experimento.inmediato.secuencias[this.indiceSecuencias].length; 
+      if(largo == 6){
+        t_expo = this.t_expo_6;
+      }
+      else if(largo == 12){
+        t_expo = this.t_expo_12;
+      }
+      else{
+        t_expo = this.t_expo_24;
+      }
+      this.promise = $timeout(this.terminarExposicion, t_expo);
     }.bind($scope);
 
     $scope.terminarExposicion = function() {
