@@ -3,7 +3,8 @@
     Comenzando...
   </p>
   <p class="experimento-secuencia" ng-show="secuenciaVisible">
-    {{secuencias[indiceSecuencias]}}
+    {{secuencias[indiceSecuencias].secu}}
+    {{rtas}}
   </p>
   <div class="experimento-pregunta" ng-show="preguntaVisible" tabindex="0" focus-if="preguntaVisible" ng-keydown="registrarRespuesta($event.keyCode)">
     <button id="si" style="color: green;" ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg">Si</button>

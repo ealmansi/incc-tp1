@@ -32,61 +32,63 @@ import decimal;
 #   gen(target_len, target_depth)
 
 def gen_rand_word(lnth, max_dpth, pairs):
-  if lnth == 0 or max_dpth == 0:
-    return '', 0
-  else:
-    i = random.randint(0, min(max_dpth - 1, lnth - 1))
-    l, r = random.choice(pairs)
-    w1, d1 = gen_rand_word(i, max_dpth - 1, pairs)
-    w2, d2 = gen_rand_word(lnth - 1 - i, max_dpth, pairs)
-    return l + w1 + r + w2, max(d1 + 1, d2)
+	if lnth == 0 or max_dpth == 0:
+		return '', 0
+	else:
+		i = random.randint(0, min(max_dpth - 1, lnth - 1))
+		l, r = random.choice(pairs)
+		w1, d1 = gen_rand_word(i, max_dpth - 1, pairs)
+		w2, d2 = gen_rand_word(lnth - 1 - i, max_dpth, pairs)
+		return l + w1 + r + w2, max(d1 + 1, d2)
 
 def main():
-  secu = []
-  count = 0
-  ls = ['(', '[', '{', '<', 'x', '+'][:3]
-  rs = [')', ']', '}', '>', 'y', '-'][:3]
-  pairs = list(zip(ls, rs))
-  print pairs
-  max_dpth = 1
-  for lnth in [3,6,12]:
-    print("bien")    
-    for max_dpth in range(1,4):
-      	while count < 10:
-      		word, depth = gen_rand_word(lnth, max_dpth, pairs)
-      		if depth == max_dpth:
-	      		count+=1
-      	  		secu.append("'"+word+"',")
+	secu = []
+	count = 0
+	ls = ['(', '[', '{', '<', 'x', '+'][:3]
+	rs = [')', ']', '}', '>', 'y', '-'][:3]
+	pairs = list(zip(ls, rs))
+	max_dpth = 1
+	for lnth in [3,6,9]:
+		for max_dpth in range(1,4):
+				while count < 5:
+					word, depth = gen_rand_word(lnth, max_dpth, pairs)
+					if depth == max_dpth:
+						count+=1
+						secu.append("{secu:'"+ word+"', largo: " +str(len(word))+", correcta: 'si', depth:"+str(max_dpth)+"},")
 
-      	  		# flips
-      	  		
-      	  		word = list(word)
-		     	for _ in range(2):
-		        	i = random.randint(0, len(word) - 1)
-		        	c = random.choice(ls + rs)
-		        	while word[i] == c:
-		          		c = random.choice(ls + rs)
-		        	word[i] = c
-		      		# print "la queda"
-		      	word = "".join(word)
-		      	secu.append("'"+word+"',")
+						# flips
+						
+						word = list(word)
+						flips = random.randint(1,3)
+						for _ in range(flips):
+								i = random.randint(0, len(word) - 1)
+								c = random.choice(ls + rs)
+								while word[i] == c:
+										c = random.choice(ls + rs)
+								word[i] = c
+								# print "la queda"
+						word = "".join(word)
+							# "{secu: word, largo: " +len(word)+", correcta: no, depth:max_dpth},"
+						secu.append("{secu:'"+ word+"', largo: " +str(len(word))+", correcta: 'no', depth:"+str(max_dpth)+"},")
+							# secu.append("'"+word+"',")
 
-      	count = 0
-    print("mal")
-    for flips in range(1, 3):
-      word, _ = gen_rand_word(lnth, max_dpth, pairs)
-      word = list(word)
-      for _ in range(flips):
-        i = random.randint(0, len(word) - 1)
-        c = random.choice(ls + rs)
-        while word[i] == c:
-          c = random.choice(ls + rs)
-        word[i] = c
-      word = "".join(word)
-      print(word, "flips:", flips)
-    random.shuffle(secu)
-    for x in secu:
-    	print x
+				count = 0
+		# print("mal")
+		# for flips in range(1, 3):
+		# 	word, _ = gen_rand_word(lnth, max_dpth, pairs)
+		# 	word = list(word)
+		# 	for _ in range(flips):
+		# 		i = random.randint(0, len(word) - 1)
+		# 		c = random.choice(ls + rs)
+		# 		while word[i] == c:
+		# 			c = random.choice(ls + rs)
+		# 		word[i] = c
+		# 	word = "".join(word)
+		# 	print(word, "flips:", flips)
+	random.shuffle(secu)
+	for x in secu:
+		print x
+	print len(secu)
 
 if __name__ == '__main__':
-  main()
+	main()

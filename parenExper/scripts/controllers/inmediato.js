@@ -33,7 +33,7 @@
     $scope.t_prev = $experimento.inmediato.t_prev;
     $scope.t_expo_6 = $experimento.inmediato.t_expo_6;
     $scope.t_expo_12 = $experimento.inmediato.t_expo_12;
-    $scope.t_expo_24 = $experimento.inmediato.t_expo_24;
+    $scope.t_expo_18 = $experimento.inmediato.t_expo_18;
 
 
     $scope.t_resp = $experimento.inmediato.t_resp;
@@ -73,7 +73,7 @@
       this.secuenciaVisible = true;
       this.preguntaVisible = false;
       var t_expo = 0;
-      var largo = $experimento.inmediato.secuencias[this.indiceSecuencias].length; 
+      var largo = $experimento.inmediato.secuencias[this.indiceSecuencias].largo; 
       if(largo == 6){
         t_expo = this.t_expo_6;
       }
@@ -81,7 +81,7 @@
         t_expo = this.t_expo_12;
       }
       else{
-        t_expo = this.t_expo_24;
+        t_expo = this.t_expo_18;
       }
       this.promise = $timeout(this.terminarExposicion, t_expo);
     }.bind($scope);
@@ -117,6 +117,24 @@
             $timeout.cancel(this.promise);
             this.promise = null;
           }
+
+          switch(this.secuencias[this.indiceSecuencias].largo)
+          {
+            case 6:
+              indiceRta = 0;
+              break;
+            case 12:
+              indiceRta = 1;
+              break;
+            case 18:
+              indiceRta = 2;
+              break;
+          }
+          // alert(indiceRta);
+          if(respuesta === this.secuencias[this.indiceSecuencias].correcta){
+            $resultados.inmediato.rtas_correctas[indiceRta]++;
+          }
+
           this.respuestas.push([this.indiceSecuencias, respuesta, end-start]);
           this.promise = $timeout(this.ponerProximaSecuencia, 300);
       }

@@ -6,6 +6,7 @@
     return {
       inmediato: {
         respuestas: [],
+        rtas_correctas: [0,0,0],
       },
       inconsciente: {
         respuestas: [],
