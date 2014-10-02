@@ -42,18 +42,38 @@ def gen_rand_word(lnth, max_dpth, pairs):
     return l + w1 + r + w2, max(d1 + 1, d2)
 
 def main():
+  secu = []
+  count = 0
   ls = ['(', '[', '{', '<', 'x', '+'][:3]
   rs = [')', ']', '}', '>', 'y', '-'][:3]
   pairs = list(zip(ls, rs))
+  print pairs
+  max_dpth = 1
+  for lnth in [3,6,12]:
+    print("bien")    
+    for max_dpth in range(1,4):
+      	while count < 10:
+      		word, depth = gen_rand_word(lnth, max_dpth, pairs)
+      		if depth == max_dpth:
+	      		count+=1
+      	  		secu.append("'"+word+"',")
 
-  max_dpth = decimal.Decimal('Infinity')
-  for lnth in [2, 3, 4, 5, 6, 7, 8, 9, 10]:
-    print("bien")
-    for _ in range(10):
-      word, depth = gen_rand_word(lnth, max_dpth, pairs)
-      print(word, "depth:", depth)
+      	  		# flips
+      	  		
+      	  		word = list(word)
+		     	for _ in range(2):
+		        	i = random.randint(0, len(word) - 1)
+		        	c = random.choice(ls + rs)
+		        	while word[i] == c:
+		          		c = random.choice(ls + rs)
+		        	word[i] = c
+		      		# print "la queda"
+		      	word = "".join(word)
+		      	secu.append("'"+word+"',")
+
+      	count = 0
     print("mal")
-    for flips in range(1, 11, 2):
+    for flips in range(1, 3):
       word, _ = gen_rand_word(lnth, max_dpth, pairs)
       word = list(word)
       for _ in range(flips):
@@ -64,6 +84,9 @@ def main():
         word[i] = c
       word = "".join(word)
       print(word, "flips:", flips)
+    random.shuffle(secu)
+    for x in secu:
+    	print x
 
 if __name__ == '__main__':
   main()
