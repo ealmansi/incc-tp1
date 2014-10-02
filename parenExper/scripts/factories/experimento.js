@@ -6,10 +6,10 @@
     return {
       inmediato: {
         t_prev: 1000,           // tiempo de espera previo a empezar
-        t_expo_6: 300,
-        t_expo_12: 900,
-        t_expo_18: 1500,           // tiempo de expoSicion al estimulo
-        t_resp: 1000,           // tiempo para responder
+        t_expo_6: 100,
+        t_expo_12: 320,
+        t_expo_18: 780,           // tiempo de expoSicion al estimulo
+        t_resp: 1500,           // tiempo para responder
         secuencias: [
           {secu:'[]{}{((}[]{}{}{}[]', largo: 18, correcta: 'No', depth:2},
           {secu:'(({}))', largo: 6, correcta: 'Si', depth:3},
