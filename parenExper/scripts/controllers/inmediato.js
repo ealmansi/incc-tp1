@@ -55,7 +55,8 @@
       $('#si').css("background-color", "white");
       if (this.indiceSecuencias + 1 < this.secuencias.length) {
         this.indiceSecuencias = this.indiceSecuencias + 1;
-        this.comenzarExposicion();
+        this.preguntaVisible = false;
+        this.promise = $timeout(this.comenzarExposicion,1000);
       }
       else {
         this.avanzar();
@@ -83,7 +84,13 @@
       else{
         t_expo = this.t_expo_18;
       }
-      this.promise = $timeout(this.terminarExposicion, t_expo);
+      this.promise = $timeout(this.ocultarSecu, t_expo);
+    }.bind($scope);
+
+    $scope.ocultarSecu = function() {
+      this.secuenciaVisible = false;
+      this.promise = $timeout(this.terminarExposicion, 800);
+
     }.bind($scope);
 
     $scope.terminarExposicion = function() {

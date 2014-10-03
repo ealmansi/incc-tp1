@@ -59,9 +59,9 @@ def main():
 						# flips
 						
 						word = list(word)
-						flips = random.randint(1,3)
+						flips = random.randint(1,1)
 						for _ in range(flips):
-								i = random.randint(0, len(word) - 1)
+								i = random.randint(1, len(word) - 2)
 								c = random.choice(ls + rs)
 								while word[i] == c:
 										c = random.choice(ls + rs)
