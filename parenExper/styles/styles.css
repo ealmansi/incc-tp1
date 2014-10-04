@@ -24,7 +24,7 @@
 .experimento-container .experimento-preparate { font-size: 2vw; }
 .experimento-container .experimento-secuencia { font-size: 3vw; letter-spacing: 1vw; }
 .experimento-container .experimento-letra { font-size: 4vw; }
-.experimento-container .experimento-pregunta { font-size: 4vw; }
+.experimento-container .experimento-pregunta { font-size: 2vw; }
 
 @media (max-width: 900px) {
   .experimento-container { margin-top: 18vw; }

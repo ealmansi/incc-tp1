@@ -60,12 +60,12 @@
       $('#si').css("background-color", "white");
       if (this.indiceSecuencias + 1 < this.secuencias.length) {
         this.indiceSecuencias = this.indiceSecuencias + 1;
-        this.comenzarExposicion();
+        this.preguntaVisible = false;
+        this.promise = $timeout(this.comenzarExposicion,1000);
       }
       else {
         this.avanzar();
       }
-      start = (new Date()).getTime();
     }.bind($scope);
 
     $scope.comenzarExposicion = function() {
@@ -74,7 +74,13 @@
       this.preguntaVisible = false;
       this.letraVisible = false;
       this.preguntaLetraVisible = false;
-      this.promise = $timeout(this.empezarTareaAlternativa, this.t_expo);
+      this.promise = $timeout(this.ocultarSecu, this.t_expo);
+    }.bind($scope);
+
+    $scope.ocultarSecu = function() {
+      this.secuenciaVisible = false;
+      this.promise = $timeout(this.empezarTareaAlternativa, 100);
+
     }.bind($scope);
 
     $scope.terminarExposicion = function() {
@@ -83,6 +89,7 @@
       this.preguntaVisible = true;
       this.letraVisible = false;
       this.preguntaLetraVisible = false;
+      start = (new Date()).getTime();
       this.promise = $timeout(this.anularRespuesta, this.t_resp);
     }.bind($scope);
     
@@ -106,8 +113,8 @@
             $timeout.cancel(this.promise);
             this.promise = null;
           }
-          this.respuestas.push([this.indiceSecuencias, respuesta]);
-          this.promise = $timeout(this.ponerProximaSecuencia, 300);
+          this.respuestas.push([this.indiceSecuencias, respuesta, end-start]);
+          this.promise = $timeout(this.ponerProximaSecuencia, 200);
       }
     }.bind($scope);
 
@@ -161,14 +168,8 @@
       this.secuenciaVisible = false;
       this.preguntaVisible = false;
       this.letraVisible = false;
-      if (this.indiceLetras < 2) {
-        this.preguntaLetraVisible = false;
-        this.promise = $timeout(this.ponerProximaLetra, this.t_resp_letras / 2);
-      }
-      else {
-        this.preguntaLetraVisible = true;
-        this.promise = $timeout(this.anularRespuestaLetra, this.t_resp_letras);
-      }
+      this.preguntaLetraVisible = true;
+      this.promise = $timeout(this.anularRespuestaLetra, this.t_resp_letras);
     }.bind($scope);
       
     $scope.registrarRespuestaLetra = function(keyCode) {

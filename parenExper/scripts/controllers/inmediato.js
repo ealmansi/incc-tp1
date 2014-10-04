@@ -143,7 +143,7 @@
           }
 
           this.respuestas.push([this.indiceSecuencias, respuesta, end-start]);
-          this.promise = $timeout(this.ponerProximaSecuencia, 300);
+          this.promise = $timeout(this.ponerProximaSecuencia, 200);
       }
     }.bind($scope);
 
