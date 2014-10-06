@@ -3,8 +3,6 @@
   var parenExperCtlrs = angular.module('parenExperCtlrs');
 
   parenExperCtlrs.controller('inconscienteExplicacionCtlr', function($scope, $experimento) {
-    $scope.t_expo = $experimento.inconsciente.t_expo;
-    $scope.t_resp = $experimento.inconsciente.t_resp;
     $scope.n_letras = $experimento.inconsciente.n_letras;
 
     $scope.avanzar = function () {
@@ -16,6 +14,7 @@
     $scope.t_prev = $experimento.inconsciente.t_prev;
     $scope.t_expo = $experimento.inconsciente.t_expo;
     $scope.t_resp = $experimento.inconsciente.t_resp;
+    $scope.t_buff = $experimento.inconsciente.t_buff;
     $scope.secuencias = $experimento.inconsciente.secuencias;
     $scope.respuestas = $resultados.inconsciente.respuestas;
     $scope.t_prev_letras = $experimento.inconsciente.t_prev_letras;
@@ -29,6 +28,29 @@
       this.avanzarDesde('inconsciente-experimento');
     }.bind($scope);
 
+    $scope.$on('tecla-presionada', function(event, args) {
+      if (this.preguntaVisible === true && 'charCode' in args) {
+        if (args.charCode == 115) {
+          this.registrarRespuesta('S');
+          $('.boton-si').css("background-color", "lightgreen");
+        }
+        else if (args.charCode == 110) {
+          this.registrarRespuesta('N');
+          $('.boton-no').css("background-color", "orange");
+        }
+      }
+      else if (this.preguntaLetraVisible === true && 'charCode' in args) {
+        if (args.charCode == 115) {
+          this.registrarRespuestaLetra('S');
+          $('.boton-si').css("background-color", "lightgreen");
+        }
+        else if (args.charCode == 110) {
+          this.registrarRespuestaLetra('N');
+          $('.boton-no').css("background-color", "orange");
+        }
+      }
+    }.bind($scope));
+
     $scope.preparateVisible = true;
     $scope.secuenciaVisible = false;
     $scope.preguntaVisible = false;
@@ -39,8 +61,14 @@
     $scope.indiceGruposLetras = -1;
     $scope.letras = null;
     $scope.indiceLetras = -1;
+    $scope.timerStart = null;
+    $scope.timerEnd = null;
+    $scope.timerLetraStart = null;
+    $scope.timerLetraEnd = null;
 
     $scope.ponerProximaSecuencia = function() {
+      $('.boton-si').css("background-color", "white");
+      $('.boton-no').css("background-color", "white");
       if (this.indiceSecuencias + 1 < this.secuencias.length) {
         this.indiceSecuencias = this.indiceSecuencias + 1;
         this.comenzarExposicion();
@@ -56,7 +84,8 @@
       this.preguntaVisible = false;
       this.letraVisible = false;
       this.preguntaLetraVisible = false;
-      this.promise = $timeout(this.empezarTareaAlternativa, this.t_expo);
+      this.timerStart = (new Date()).getTime();
+      this.promise = $timeout(this.empezarTareaAlternativa, this.t_expo(this.secuencias[this.indiceSecuencias]));
     }.bind($scope);
 
     $scope.terminarExposicion = function() {
@@ -74,15 +103,16 @@
             $timeout.cancel(this.promise);
             this.promise = null;
           }
-          this.respuestas.push([this.indiceSecuencias, respuesta]);
-          this.ponerProximaSecuencia();
+          this.timerEnd = (new Date()).getTime();
+          this.respuestas.push([this.indiceSecuencias, respuesta, this.timerEnd - this.timerStart]);
+          this.promise = $timeout(this.ponerProximaSecuencia, this.t_buff);
       }
     }.bind($scope);
 
     $scope.anularRespuesta = function() {
       if (this.preguntaVisible === true) {
-        this.respuestas.push([this.indiceSecuencias, 'X']);
-        this.ponerProximaSecuencia();
+        this.respuestas.push([this.indiceSecuencias, 'X', -1]);
+        this.promise = $timeout(this.ponerProximaSecuencia, this.t_buff);
       }
     }.bind($scope);
 
@@ -99,6 +129,8 @@
     }.bind($scope);
 
     $scope.ponerProximaLetra = function() {
+      $('.boton-si').css("background-color", "white");
+      $('.boton-no').css("background-color", "white");
       if (this.indiceLetras + 1 < this.letras.length) {
         this.indiceLetras = this.indiceLetras + 1;
         this.comenzarExposicionLetra();
@@ -119,6 +151,7 @@
       this.preguntaVisible = false;
       this.letraVisible = true;
       this.preguntaLetraVisible = false;
+      this.timerLetraStart = (new Date()).getTime();
       this.promise = $timeout(this.terminarExposicionLetra, this.t_expo_letras);
     }.bind($scope);
 
@@ -129,7 +162,7 @@
       this.letraVisible = false;
       if (this.indiceLetras < 2) {
         this.preguntaLetraVisible = false;
-        this.promise = $timeout(this.ponerProximaLetra, this.t_resp_letras / 2);
+        this.promise = $timeout(this.ponerProximaLetra, 1000);
       }
       else {
         this.preguntaLetraVisible = true;
@@ -143,15 +176,16 @@
             $timeout.cancel(this.promise);
             this.promise = null;
           }
-          this.respuestasLetras.push([this.indiceGruposLetras, this.indiceLetras, respuesta]);
-          this.ponerProximaLetra();
+          this.timerLetraEnd = (new Date()).getTime();
+          this.respuestasLetras.push([this.indiceGruposLetras, this.indiceLetras, respuesta, this.timerLetraEnd - this.timerLetraStart]);
+          this.promise = $timeout(this.ponerProximaLetra, this.t_buff);
       }
     }.bind($scope);
 
     $scope.anularRespuestaLetra = function() {
       if (this.preguntaLetraVisible === true) {
-        this.respuestasLetras.push([this.indiceGruposLetras, this.indiceLetras, 'X']);
-        this.ponerProximaLetra();
+        this.respuestasLetras.push([this.indiceGruposLetras, this.indiceLetras, 'X', -1]);
+        this.promise = $timeout(this.ponerProximaLetra, this.t_buff);
       }
     }.bind($scope);
 

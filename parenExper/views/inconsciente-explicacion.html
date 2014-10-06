@@ -1,6 +1,6 @@
 <div class="container-fluid explicacion-container">
   <div class="page-header">
-    <h1>Tercera parte</h1>
+    <h1>Segunda parte</h1>
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -10,9 +10,8 @@
         </div>
         <div class="panel-body">
           <ul class="instrucciones">
-            <li>En esta tercera instancia, el procedimiento será diferente. </li>
-            <li>La secuencia será presentada por un total de {{t_expo / 1000 | number:0}} segundos, y luego, antes de dar la respuesta deberá realizar una tarea descripta a continuación.</li>
-             <li>Una vez finalizada la tarea usted dispondrá de {{t_resp / 1000 | number:0}} segundos para responder, sobre el apareamiento de símbolos como en los experimentos anteriores.</li>
+            <li>En esta segunda instancia, el procedimiento será diferente. </li>
+            <li>Antes de dar la respuesta deberá realizar una tarea descripta a continuación.</li>
           </ul>
         </div>
       </div>
@@ -25,14 +24,15 @@
         <div class="panel-body">
           <ul class="instrucciones">
             <li>Diferentes letras irán apareciendo en pantalla, de a una por vez.</li>
-            <li>Luego de cada una de ellas, se le presentará una pantalla donde deberá responder si la última letra es equivalente a la que apareció {{n_letras}} muestras atrás cliqueando uno de los siguientes botones:
+            <li> En cada una de ellas deberá responder si es equivalente a la que apareció {{n_letras}} muestra atrás apretando uno de los siguientes botones:
               <ul class="list-unstyled" style="margin-left:20px;">
-                <li><strong>Sí</strong> &nbsp;&nbsp;&nbsp; si la letra presentada anteriormente es equivalente a la que apareció {{n_letras}} muestras atrás.</li>
-                <li><strong>No</strong> &nbsp;&nbsp;&nbsp;si la letra presentada anteriormente <b>NO</b> apareció {{n_letras}} muestras atrás.</li>
+                <li><strong style="color: green;">s</strong> &nbsp;&nbsp;&nbsp; si la letra presentada es equivalente a la que apareció {{n_letras}} muestra atrás.</li>
+                <li><strong style="color: red;">n</strong> &nbsp;&nbsp;&nbsp;si la letra presentada <b>NO</b> apareció {{n_letras}} muestra atrás.</li>
               </ul>
             </li>
-            <li>En las primeras dos letras no deberá responder nada.</li>
-            
+            <li>Es decir, deberá memorizar la última {{n_letras}} letra aparecida para poder responder correctamente.</li>
+            <li>Para confirmar que entendió la consigna, dé la respuesta a cada una de las siguientes letras, suponiendo que aparecen de a una por vez:</li>
+            <li><b>A B A A T Z T T</b></li>
           </ul>
         </div>
       </div>

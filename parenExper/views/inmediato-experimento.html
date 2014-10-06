@@ -6,10 +6,10 @@
     {{secuencias[indiceSecuencias]}}
   </p>
   <div class="experimento-pregunta" ng-show="preguntaVisible">
-    <p>
+    <p ng-show="indiceSecuencias === 0">
       ¿Estaba bien formada la cadena previa?
     </p>
-    <button ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg">Si</button>
-    <button ng-click="registrarRespuesta('No')" class="btn btn-default btn-lg">No</button>
+    <button ng-click="registrarRespuesta('Si')" class="btn btn-default btn-lg boton-si">Si</button>
+    <button ng-click="registrarRespuesta('No')" class="btn btn-default btn-lg boton-no">No</button>
   </div>
 </div>

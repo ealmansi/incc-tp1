@@ -48,7 +48,7 @@ def main():
 	rs = [')', ']', '}', '>', 'y', '-'][:3]
 	pairs = list(zip(ls, rs))
 	max_dpth = 1
-	for lnth in [3,6,9]:
+	for lnth in [9]:
 		for max_dpth in range(1,4):
 				while count < 3:
 					word, depth = gen_rand_word(lnth, max_dpth, pairs)
