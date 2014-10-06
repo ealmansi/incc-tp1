@@ -3,6 +3,8 @@
   var parenExperApp = angular.module('parenExperApp', ['ngRoute', 'parenExperCtlrs', 'firebase']);
   var parenExperCtlrs = angular.module('parenExperCtlrs', []);
 
+
+
   parenExperApp.config(function($routeProvider) {
     $routeProvider
       .when('/', {
