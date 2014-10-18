@@ -84,7 +84,14 @@ secuencias_inconsciente = [
 
 def procesarSujeto(sujeto):
 	# obtenerRtrasCorrectasInmediato(sujeto)
-	obtenerRtas(sujeto, 6, 2)
+	# obtenerRtas(sujeto, 6, 2)
+	obtenerRtasCorrectasInmediatoBruto(sujeto)
+	# if(esComputador(sujeto)):
+		# obtenerRtas(sujeto, 6, 3)
+
+def esComputador(sujeto):
+	return sujeto['encuesta']['estudios'] == {'computacion': True}
+
 
 def obtenerRtasCorrectasInmediato(sujeto):
 	cant_rtas_correctas_inmediato = 0
@@ -93,6 +100,26 @@ def obtenerRtasCorrectasInmediato(sujeto):
 		if secuencias_inmediato[indice]['rta_correcta'] == rta:
 			cant_rtas_correctas_inmediato = cant_rtas_correctas_inmediato + 1
 	print(cant_rtas_correctas_inmediato)
+
+def obtenerRtasCorrectasInmediatoComp(sujeto):
+	if(esComputador(sujeto)):
+		cant_rtas_correctas_inmediato = 0
+		for rta_tiempo in sujeto['inmediato']['respuestas']:
+				indice, rta, tiempo  = rta_tiempo[0], rta_tiempo[1], rta_tiempo[2]
+				if secuencias_inmediato[indice]['rta_correcta'] == rta:
+					cant_rtas_correctas_inmediato = cant_rtas_correctas_inmediato + 1
+		print(cant_rtas_correctas_inmediato)
+
+
+def obtenerRtasCorrectasInmediatoBruto(sujeto):
+	if(not esComputador(sujeto)):
+		cant_rtas_correctas_inmediato = 0
+		for rta_tiempo in sujeto['inmediato']['respuestas']:
+				indice, rta, tiempo  = rta_tiempo[0], rta_tiempo[1], rta_tiempo[2]
+				if secuencias_inmediato[indice]['rta_correcta'] == rta:
+					cant_rtas_correctas_inmediato = cant_rtas_correctas_inmediato + 1
+		print(cant_rtas_correctas_inmediato)
+
 
 def obtenerRtas(sujeto, largo, profundidad):
 	cant_rtas_correctas = 0
@@ -103,10 +130,10 @@ def obtenerRtas(sujeto, largo, profundidad):
 			if secuencias_inmediato[indice]['rta_correcta'] == rta:
 				cant_rtas_correctas = cant_rtas_correctas + 1
 	porcentaje = cant_rtas_correctas/6.0
-	print 'Rtas correctas', cant_rtas_correctas 
-	print 'largo: ', largo 
-	print 'profundida: ', profundidad
-	print 'Porcentaje: ', porcentaje*100, '%'
+	print cant_rtas_correctas 
+	# print 'largo: ', largo 
+	# print 'profundida: ', profundidad
+	# print 'Porcentaje: ', porcentaje*100, '%'
 
 
 
@@ -117,7 +144,7 @@ def main():
 	sujetos = OrderedDict(sorted(data['resultados'].items(), key=lambda t: t[0]))
 	for key in sujetos:
 		sujeto = sujetos[key]
-		# pprint(sujeto)
+		pprint(sujeto)
 		procesarSujeto(sujeto)
 
 if __name__ == '__main__':
