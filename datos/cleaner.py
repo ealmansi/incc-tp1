@@ -85,9 +85,17 @@ secuencias_inconsciente = [
 def procesarSujeto(sujeto):
 	# obtenerRtrasCorrectasInmediato(sujeto)
 	# obtenerRtas(sujeto, 6, 2)
-	obtenerRtasCorrectasInmediatoBruto(sujeto)
-	# if(esComputador(sujeto)):
-		# obtenerRtas(sujeto, 6, 3)
+
+	# obtenerRtasCorrectasInmediatoBruto(sujeto)
+	total = 0
+	if(esComputador(sujeto)):
+		for i in xrange(6,19,6):
+			for j in xrange(1,4):
+				# print "Computador largo: ", i, "Depth: ", j	
+				total += obtenerRtas(sujeto, i, j)
+		print total
+		if total>=48:
+			print "Una bestia"
 
 def esComputador(sujeto):
 	return sujeto['encuesta']['estudios'] == {'computacion': True}
@@ -130,7 +138,7 @@ def obtenerRtas(sujeto, largo, profundidad):
 			if secuencias_inmediato[indice]['rta_correcta'] == rta:
 				cant_rtas_correctas = cant_rtas_correctas + 1
 	porcentaje = cant_rtas_correctas/6.0
-	print cant_rtas_correctas 
+	return cant_rtas_correctas 
 	# print 'largo: ', largo 
 	# print 'profundida: ', profundidad
 	# print 'Porcentaje: ', porcentaje*100, '%'
@@ -144,7 +152,7 @@ def main():
 	sujetos = OrderedDict(sorted(data['resultados'].items(), key=lambda t: t[0]))
 	for key in sujetos:
 		sujeto = sujetos[key]
-		pprint(sujeto)
+		# pprint(sujeto)
 		procesarSujeto(sujeto)
 
 if __name__ == '__main__':
