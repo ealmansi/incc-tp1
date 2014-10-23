@@ -100,15 +100,15 @@ def procesarSujetosPorLargo(sujetos):
 def procesarSujetosPorProf(sujetos):
 	# Analisis de baja de rendimiento según el largo
 	for s in sujetos:	
-		rtas_prof_6 = (0,0)
-		rtas_prof_12 = (0,0)
-		rtas_prof_18 = (0,0)
+		rtas_prof_1 = (0,0)
+		rtas_prof_2 = (0,0)
+		rtas_prof_3 = (0,0)
 		for i in xrange(6,19, 6):
-			rtas_prof_6 = tuple(a+b for a,b in zip(rtas_prof_6, obtenerRtas(s, i, 1)))
-			rtas_prof_12 = tuple(a+b for a,b in zip(rtas_prof_12, obtenerRtas(s, i, 2)))
-			rtas_prof_18 = tuple(a+b for a,b in zip(rtas_prof_18, obtenerRtas(s, i, 3)))
+			rtas_prof_1 = tuple(a+b for a,b in zip(rtas_prof_1, obtenerRtas(s, i, 1)))
+			rtas_prof_2 = tuple(a+b for a,b in zip(rtas_prof_2, obtenerRtas(s, i, 2)))
+			rtas_prof_3 = tuple(a+b for a,b in zip(rtas_prof_3, obtenerRtas(s, i, 3)))
 
-		print(rtas_prof_6, rtas_prof_12, rtas_prof_18) 
+		print(rtas_prof_1, rtas_prof_2, rtas_prof_3) 
 
 def procesarSujetosPorLargoYProf(sujetos):
 	# Analisis de baja de rendimiento según el largo
@@ -120,6 +120,25 @@ def procesarSujetosPorLargoYProf(sujetos):
 				rtas = (0,0)
 				rtas = obtenerRtas(s, i, j)
 				print(rtas)
+
+def procesarSujetosInconsciente(sujetos):
+	for s in sujetos:	
+		rtas_prof_1 = (0,0)
+		rtas_prof_2 = (0,0)
+		rtas_prof_3 = (0,0)
+
+		rtas_prof_1 = obtenerRtasInc(s, 1)
+		rtas_prof_2 = obtenerRtasInc(s, 2)	
+		rtas_prof_3 = obtenerRtasInc(s, 3)
+		print(rtas_prof_1, rtas_prof_2, rtas_prof_3) 
+
+def procesarSujetosInconscientePorProf(sujetos):
+	for i in xrange(1,4):
+		print "Prof: ", i
+		for s in sujetos:	
+			rtas_prof= (0,0)
+			rtas_prof = obtenerRtasInc(s, i)
+			print(rtas_prof) 
 
 def procesarSujeto(sujeto):
 	# Analisis de baja de rendimiento según el largo
@@ -184,11 +203,22 @@ def obtenerRtas(sujeto, largo, profundidad):
 			t_total += tiempo
 			if secuencias_inmediato[indice]['rta_correcta'] == rta:
 				cant_rtas_correctas = cant_rtas_correctas + 1
-	porcentaje = cant_rtas_correctas/6.0
 	return cant_rtas_correctas, t_total
 	# print 'largo: ', largo 
 	# print 'profundida: ', profundidad
 	# print 'Porcentaje: ', porcentaje*100, '%'
+
+def obtenerRtasInc(sujeto, profundidad):
+	cant_rtas_correctas = 0
+	t_total = 0
+	porcentaje = 0.0
+	for rta in sujeto['inconsciente']['respuestas']:
+		indice, rta, tiempo = rta[0], rta[1], rta[2]
+		if (secuencias_inconsciente[indice]['depth'] == profundidad):
+			t_total += tiempo
+			if secuencias_inconsciente[indice]['rta_correcta'] == rta:
+				cant_rtas_correctas = cant_rtas_correctas + 1
+	return cant_rtas_correctas, t_total
 
 
 
@@ -248,9 +278,45 @@ def main():
 
 	print "\n"
 
-		# Analisis por largo y prof total sujetos
+	# Analisis por largo y prof No Computadores
 	print "No Computadores largo 6,12,18 y prof 1, 2, 3 (Rtas Correctas, Tiempo Total)"
 	procesarSujetosPorLargoYProf(filter(noEsComputador, values))
+
+	print "\n"
+
+	# Analisis total sujetos INCONSCIENTE
+	print "Total Sujetos INCONSCIENTE (Rtas Correctas, Tiempo Total)"
+	procesarSujetosInconsciente(values)
+
+	print "\n"
+
+	# Analisis Computadores INCONSCIENTE
+	print "Computadores INCONSCIENTE (Rtas Correctas, Tiempo Total)"
+	procesarSujetosInconsciente(filter(esComputador,values))
+
+	print "\n"
+
+	# Analisis No Computadores INCONSCIENTE
+	print "No Computadores INCONSCIENTE (Rtas Correctas, Tiempo Total)"
+	procesarSujetosInconsciente(filter(noEsComputador,values))
+
+	print "\n"
+
+	# Analisis total sujetos por prof INCONSCIENTE
+	print "Total sujetos por prof INCONSCIENTE (Rtas Correctas, Tiempo Total)"
+	procesarSujetosInconscientePorProf(values)
+
+	print "\n"
+
+	# Analisis Computadores por prof INCONSCIENTE
+	print "Computadores por prof INCONSCIENTE (Rtas Correctas, Tiempo Total)"
+	procesarSujetosInconscientePorProf(filter(esComputador, values))
+
+	print "\n"
+
+	# Analisis Computadores por prof INCONSCIENTE
+	print "No Computadores por prof INCONSCIENTE (Rtas Correctas, Tiempo Total)"
+	procesarSujetosInconscientePorProf(filter(noEsComputador, values))
 
 	print "\n"
 
