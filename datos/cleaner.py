@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 import json
 from collections import OrderedDict
@@ -82,7 +83,49 @@ secuencias_inconsciente = [
 	{'largo': 18, 'rta_correcta': 'S', 'depth':2},
 ]
 
+
+def procesarSujetosPorLargo(sujetos):
+	# Analisis de baja de rendimiento según el largo
+	for s in sujetos:	
+		rtas_largo_6 = (0,0)
+		rtas_largo_12 = (0,0)
+		rtas_largo_18 = (0,0)
+		for i in xrange(1,4):
+			rtas_largo_6 = tuple(a+b for a,b in zip(rtas_largo_6, obtenerRtas(s, 6, i)))
+			rtas_largo_12 = tuple(a+b for a,b in zip(rtas_largo_12, obtenerRtas(s, 12, i)))
+			rtas_largo_18 = tuple(a+b for a,b in zip(rtas_largo_18, obtenerRtas(s, 18, i)))
+
+		print(rtas_largo_6, rtas_largo_12, rtas_largo_18) 
+
+def procesarSujetosPorProf(sujetos):
+	# Analisis de baja de rendimiento según el largo
+	for s in sujetos:	
+		rtas_prof_6 = (0,0)
+		rtas_prof_12 = (0,0)
+		rtas_prof_18 = (0,0)
+		for i in xrange(6,19, 6):
+			rtas_prof_6 = tuple(a+b for a,b in zip(rtas_prof_6, obtenerRtas(s, i, 1)))
+			rtas_prof_12 = tuple(a+b for a,b in zip(rtas_prof_12, obtenerRtas(s, i, 2)))
+			rtas_prof_18 = tuple(a+b for a,b in zip(rtas_prof_18, obtenerRtas(s, i, 3)))
+
+		print(rtas_prof_6, rtas_prof_12, rtas_prof_18) 
+
+def procesarSujetosPorLargoYProf(sujetos):
+	# Analisis de baja de rendimiento según el largo
+	
+	for i in xrange(6,19, 6):
+		for j in xrange(1,4):
+			print "Largo: ", i, "Prof: ", j
+			for s in sujetos:	
+				rtas = (0,0)
+				rtas = obtenerRtas(s, i, j)
+				print(rtas)
+
 def procesarSujeto(sujeto):
+	# Analisis de baja de rendimiento según el largo
+	
+
+
 	# obtenerRtrasCorrectasInmediato(sujeto)
 	# obtenerRtas(sujeto, 6, 2)
 
@@ -100,6 +143,8 @@ def procesarSujeto(sujeto):
 def esComputador(sujeto):
 	return sujeto['encuesta']['estudios'] == {'computacion': True}
 
+def noEsComputador(sujeto):
+	return not esComputador(sujeto)
 
 def obtenerRtasCorrectasInmediato(sujeto):
 	cant_rtas_correctas_inmediato = 0
@@ -131,14 +176,16 @@ def obtenerRtasCorrectasInmediatoBruto(sujeto):
 
 def obtenerRtas(sujeto, largo, profundidad):
 	cant_rtas_correctas = 0
+	t_total = 0
 	porcentaje = 0.0
 	for rta in sujeto['inmediato']['respuestas']:
 		indice, rta, tiempo = rta[0], rta[1], rta[2]
 		if (secuencias_inmediato[indice]['largo'] == largo) and (secuencias_inmediato[indice]['depth'] == profundidad):
+			t_total += tiempo
 			if secuencias_inmediato[indice]['rta_correcta'] == rta:
 				cant_rtas_correctas = cant_rtas_correctas + 1
 	porcentaje = cant_rtas_correctas/6.0
-	return cant_rtas_correctas 
+	return cant_rtas_correctas, t_total
 	# print 'largo: ', largo 
 	# print 'profundida: ', profundidad
 	# print 'Porcentaje: ', porcentaje*100, '%'
@@ -150,10 +197,63 @@ def main():
 	with open('incc-tp1-export-16oct.json') as data_file:
 		data = json.load(data_file)
 	sujetos = OrderedDict(sorted(data['resultados'].items(), key=lambda t: t[0]))
-	for key in sujetos:
-		sujeto = sujetos[key]
-		# pprint(sujeto)
-		procesarSujeto(sujeto)
+	# print sujetos.keys()
+	values = sujetos.values()
+
+	# Analisis de baja de rendimiento según el largo
+	print "Total sujetos en largos 6, 12, 18 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorLargo(values)
+
+	print "\n"
+
+	# Analisis de baja de rendimiento según el largo Comp
+	print "Computadores en largos 6, 12, 18 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorLargo(filter(esComputador, values))
+
+	print "\n"
+
+	# Analisis de baja de rendimiento según el largo No Comp
+	print "No computadores en largos 6, 12, 18 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorLargo(filter(noEsComputador, values))
+
+	print "\n"
+
+	# Analisis de baja de rendimiento según el profundidad
+	print "Total sujetos en prof 1, 2, 3 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorProf(values)
+
+	print "\n"
+
+	# Analisis de baja de rendimiento según el largo Comp
+	print "Computadores en prof 1, 2, 3 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorProf(filter(esComputador, values))
+
+	print "\n"
+
+	# Analisis de baja de rendimiento según el largo No Comp
+	print "No computadores prof 1, 2, 3 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorProf(filter(noEsComputador, values))
+
+	print "\n"
+
+	# Analisis por largo y prof total sujetos
+	print "Total sujetos largo 6,12,18 y prof 1, 2, 3 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorLargoYProf(values)
+
+	print "\n"
+
+	# Analisis por largo y prof total computadores
+	print "Computadores largo 6,12,18 y prof 1, 2, 3 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorLargoYProf(filter(esComputador,values))
+
+	print "\n"
+
+		# Analisis por largo y prof total sujetos
+	print "No Computadores largo 6,12,18 y prof 1, 2, 3 (Rtas Correctas, Tiempo Total)"
+	procesarSujetosPorLargoYProf(filter(noEsComputador, values))
+
+	print "\n"
+
 
 if __name__ == '__main__':
 	main()
