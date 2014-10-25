@@ -22,6 +22,8 @@ def restarTInc(rtasLetras, indice, tiempo):
 	t_rta_letras = 0
 	for i in range(0,3):
 		rta_letra = rtasLetras[indice*3+i][3]
+		# Hago chequeo para ver si no me sumo "-1" en vez de 15000. 
+		# solo acá hay que hacerlo, porque si me poné el -1 pero en el total tiene en cuenta el 15000 es rompe tooo
 		if rta_letra < 0:
 			rta_letra = 15000
 		t_rta_letras+=rta_letra
