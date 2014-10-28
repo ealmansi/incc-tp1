@@ -18,28 +18,6 @@ t_primeras_letras = 1000
 t_buff = 150
 t_expo = 1000
 
-def restarTInc(rtasLetras, indice, tiempo):
-	t_rta_letras = 0
-	for i in range(0,3):
-		rta_letra = rtasLetras[indice*3+i][3]
-		# Hago chequeo para ver si no me sumo "-1" en vez de 15000. 
-		# solo acá hay que hacerlo, porque si me poné el -1 pero en el total tiene en cuenta el 15000 es rompe tooo
-		if rta_letra < 0:
-			rta_letra = 15000
-		t_rta_letras+=rta_letra
-	t_rta_letras-=3*t_expo_letras
-
-	# print("tiempo: ", tiempo, "t_expo: ", t_expo, "t_prev_letras: ", t_prev_letras, "t_expo_letras: ", 5*t_expo_letras)
-	# print("t_primeras_letras:", 2*t_primeras_letras, "t_rta_letras: ", t_rta_letras, "t_buff: ", 3*t_buff, "t_buff_letras: ", t_buff_letras)
-
-	# Esta es la corrección del tiempo:
-	# se le resta el tiempo de expo de la secuencia, el tiempo prev a mostrar las letras, el tiempo de expo de las letras
-	# que son 5, el t de las 2 primeras letras, se resta la suma del tiempo de rta en las letras del invididuo (al cual se le resto ya
-	# 	el tiempo de exposición de las letras), se resta el t_buff que solo esta para 3 letras, y por ultimo el t_buff del final 
-	# de la expoosición de letras
-	return tiempo - t_expo - t_prev_letras - 5*(t_expo_letras) - 2*t_primeras_letras - t_rta_letras - 3*t_buff - t_buff_letras
-
-
 secuencias_inmediato = [
 	{'largo': 18, 'respuesta': 'N', 'prof':2},
 	{'largo': 18, 'respuesta': 'N', 'prof':2},
@@ -169,136 +147,153 @@ def procesarSujeto(sujeto):
 
 def imprimirEsComputador(sujeto):
 	if ('computacion' in sujeto['encuesta']['estudios']
-		and sujeto['encuesta']['estudios']['computacion']):
+			and sujeto['encuesta']['estudios']['computacion']):
 		print(1, end=",")
 	else:
 		print(0, end=",")
 
 def imprimirInmPcjAciertosTotal(sujeto):
-	cantRespuestasCorrectas = 0
-	cantRespuestas = 0
-	for irt in sujeto['inmediato']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		if secuencias_inmediato[indice]['respuesta'] == respuesta:
-			cantRespuestasCorrectas += 1
-		cantRespuestas += 1
-	porcentaje = float(cantRespuestasCorrectas) / cantRespuestas
-	print(round(porcentaje, 4), end=",")
+	respuestas = filtrarRespuestasInm(sujeto, {})
+	respuestasCorrectas = filtrarRespuestasInm(sujeto, {'soloCorrectas': True})
+	porcentaje = float(len(respuestasCorrectas)) / len(respuestas)
+	print("%.4f" % porcentaje, end=",")
 
 def imprimirInmPcjAciertosPorProf(sujeto):
-	cantRespuestasCorrectasPorProf = {p:0 for p in profundidades}
-	cantRespuestasPorProf = {p:0 for p in profundidades}
-	for irt in sujeto['inmediato']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		if secuencias_inmediato[indice]['respuesta'] == respuesta:
-			cantRespuestasCorrectasPorProf[secuencias_inmediato[indice]['prof']] += 1
-		cantRespuestasPorProf[secuencias_inmediato[indice]['prof']] += 1
 	for p in profundidades:
-		porcentaje = float(cantRespuestasCorrectasPorProf[p]) / cantRespuestasPorProf[p]
-		print(round(porcentaje, 4), end=",")
+		respuestas = filtrarRespuestasInm(sujeto, {'prof': p})
+		respuestasCorrectas = filtrarRespuestasInm(sujeto, {'prof': p, 'soloCorrectas': True})
+		porcentaje = float(len(respuestasCorrectas)) / len(respuestas)
+		print("%.4f" % porcentaje, end=",")
 
 def imprimirInmPcjAciertosPorLargo(sujeto):
-	cantRespuestasCorrectasPorLargo = {l:0 for l in largos}
-	cantRespuestasPorLargo = {l:0 for l in largos}
-	for irt in sujeto['inmediato']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		if secuencias_inmediato[indice]['respuesta'] == respuesta:
-			cantRespuestasCorrectasPorLargo[secuencias_inmediato[indice]['largo']] += 1
-		cantRespuestasPorLargo[secuencias_inmediato[indice]['largo']] += 1
 	for l in largos:
-		porcentaje = float(cantRespuestasCorrectasPorLargo[l]) / cantRespuestasPorLargo[l]
-		print(round(porcentaje, 4), end=",")
+		respuestas = filtrarRespuestasInm(sujeto, {'largo': l})
+		respuestasCorrectas = filtrarRespuestasInm(sujeto, {'largo': l, 'soloCorrectas': True})
+		porcentaje = float(len(respuestasCorrectas)) / len(respuestas)
+		print("%.4f" % porcentaje, end=",")
 
 def imprimirInmTPromTotal(sujeto):
+	respuestasCorrectas = filtrarRespuestasInm(sujeto, {'soloCorrectas': True})
 	tAcum = 0
-	cantRespuestas = 0
-	for irt in sujeto['inmediato']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		# resto el tiempo exposición que por error lo incluimos
-		tiempo -= t_expo_inmediato[secuencias_inmediato[indice]['largo']]
-		if respuesta != 'X':
-			tAcum += tiempo
-			cantRespuestas += 1
-	tProm = float(tAcum) / cantRespuestas
-	print(round(tProm, 4), end=",")
+	for irt in respuestasCorrectas:
+		tAcum += tiempoCorregidoInm(irt)
+	tProm = float(tAcum) / len(respuestasCorrectas)
+	print("%.4f" % tProm, end=",")
 
 def imprimirInmTPromPorProf(sujeto):
-	tAcumPorProf = {p:0 for p in profundidades}
-	cantRespuestasPorProf = {p:0 for p in profundidades}
-	for irt in sujeto['inmediato']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		# resto el tiempo exposición que por error lo incluimos
-		tiempo -= t_expo_inmediato[secuencias_inmediato[indice]['largo']]
-		if respuesta != 'X':
-			tAcumPorProf[secuencias_inmediato[indice]['prof']] += tiempo
-			cantRespuestasPorProf[secuencias_inmediato[indice]['prof']] += 1
 	for p in profundidades:
-		tProm = float(tAcumPorProf[p]) / cantRespuestasPorProf[p]
-		print(round(tProm, 4), end=",")
+		respuestasCorrectas = filtrarRespuestasInm(sujeto, {'prof': p, 'soloCorrectas': True})
+		tAcum = 0
+		for irt in respuestasCorrectas:
+			tAcum += tiempoCorregidoInm(irt)
+		tProm = float(tAcum) / len(respuestasCorrectas)
+		print("%.4f" % tProm, end=",")
 
 def imprimirInmTPromPorLargo(sujeto):
-	tAcumPorLargo = {l:0 for l in largos}
-	cantRespuestasPorLargo = {l:0 for l in largos}
-	for irt in sujeto['inmediato']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		# resto el tiempo exposición que por error lo incluimos
-		tiempo -= t_expo_inmediato[secuencias_inmediato[indice]['largo']]
-		if respuesta != 'X':
-			tAcumPorLargo[secuencias_inmediato[indice]['largo']] += tiempo
-			cantRespuestasPorLargo[secuencias_inmediato[indice]['largo']] += 1
 	for l in largos:
-		tProm = float(tAcumPorLargo[l]) / cantRespuestasPorLargo[l]
-		print(round(tProm, 4), end=",")
+		respuestasCorrectas = filtrarRespuestasInm(sujeto, {'largo': l, 'soloCorrectas': True})
+		tAcum = 0
+		for irt in respuestasCorrectas:
+			tAcum += tiempoCorregidoInm(irt)
+		tProm = float(tAcum) / len(respuestasCorrectas)
+		print("%.4f" % tProm, end=",")
 
 def imprimirIncPcjAciertosTotal(sujeto):
-	cantRespuestasCorrectas = 0
-	cantRespuestas = 0
-	for irt in sujeto['inconsciente']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		if secuencias_inconsciente[indice]['respuesta'] == respuesta:
-			cantRespuestasCorrectas += 1
-		cantRespuestas += 1
-	porcentaje = float(cantRespuestasCorrectas) / cantRespuestas
-	print(round(porcentaje, 4), end=",")
+	respuestas = filtrarRespuestasInc(sujeto, {})
+	respuestasCorrectas = filtrarRespuestasInc(sujeto, {'soloCorrectas': True})
+	porcentaje = float(len(respuestasCorrectas)) / len(respuestas)
+	print("%.4f" % porcentaje, end=",")
 
 def imprimirIncPcjAciertosPorProf(sujeto):
-	cantRespuestasCorrectasPorProf = {p:0 for p in profundidades}
-	cantRespuestasPorProf = {p:0 for p in profundidades}
-	for irt in sujeto['inconsciente']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		if secuencias_inconsciente[indice]['respuesta'] == respuesta:
-			cantRespuestasCorrectasPorProf[secuencias_inconsciente[indice]['prof']] += 1
-		cantRespuestasPorProf[secuencias_inconsciente[indice]['prof']] += 1
 	for p in profundidades:
-		porcentaje = float(cantRespuestasCorrectasPorProf[p]) / cantRespuestasPorProf[p]
-		print(round(porcentaje, 4), end=",")
+		respuestas = filtrarRespuestasInc(sujeto, {'prof': p})
+		respuestasCorrectas = filtrarRespuestasInc(sujeto, {'prof': p, 'soloCorrectas': True})
+		porcentaje = float(len(respuestasCorrectas)) / len(respuestas)
+		print("%.4f" % porcentaje, end=",")
 
 def imprimirIncTPromTotal(sujeto):
+	respuestasCorrectas = filtrarRespuestasInc(sujeto, {'soloCorrectas': True})
+	cantRespuestasContadas = 0
 	tAcum = 0
-	cantRespuestas = 0
-	for irt in sujeto['inconsciente']['respuestas']:
-		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		# Tiempo corregido para inconsciente:
-		tiempo = restarTInc(sujeto['inconsciente']['respuestasLetras'], indice, tiempo)
-		if respuesta != 'X':
+	for irt in respuestasCorrectas:
+		tiempo = tiempoCorregidoInc(irt, sujeto['inconsciente']['respuestasLetras'])
+		if tiempo > 100:
 			tAcum += tiempo
-			cantRespuestas += 1
-	tProm = float(tAcum) / cantRespuestas
-	print(round(tProm, 4), end=",")
+			cantRespuestasContadas += 1
+	tProm = float(tAcum) / cantRespuestasContadas
+	print("%.4f" % tProm, end=",")
 
 def imprimirIncTPromPorProf(sujeto):
-	tAcumPorProf = {p:0 for p in profundidades}
-	cantRespuestasPorProf = {p:0 for p in profundidades}
+	for p in profundidades:
+		respuestasCorrectas = filtrarRespuestasInc(sujeto, {'prof': p, 'soloCorrectas': True})
+		cantRespuestasContadas = 0
+		tAcum = 0
+		for irt in respuestasCorrectas:
+			tiempo = tiempoCorregidoInc(irt, sujeto['inconsciente']['respuestasLetras'])
+			if tiempo > 100:
+				tAcum += tiempo
+				cantRespuestasContadas += 1
+		tProm = float(tAcum) / cantRespuestasContadas
+		print("%.4f" % tProm, end=",")
+
+# # # # # # # # # # # # # # # # # # # #
+
+def filtrarRespuestasInm(sujeto, criterio):
+	respuestas = []
+	for irt in sujeto['inmediato']['respuestas']:
+		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
+		if ('prof' in criterio
+				and secuencias_inmediato[indice]['prof'] != criterio['prof']):
+			continue
+		if ('largo' in criterio
+				and secuencias_inmediato[indice]['largo'] != criterio['largo']):
+			continue
+		if ('soloCorrectas' in criterio and criterio['soloCorrectas'] == True
+			and secuencias_inmediato[indice]['respuesta'] != respuesta):
+			continue
+		respuestas.append(irt)
+	return respuestas
+
+def filtrarRespuestasInc(sujeto, criterio):
+	respuestas = []
 	for irt in sujeto['inconsciente']['respuestas']:
 		indice, respuesta, tiempo = irt[0], irt[1], irt[2]
-		# Tiempo corregido para inconsciente:
-		tiempo = restarTInc(sujeto['inconsciente']['respuestasLetras'], indice, tiempo)
-		if respuesta != 'X':
-			tAcumPorProf[secuencias_inconsciente[indice]['prof']] += tiempo
-			cantRespuestasPorProf[secuencias_inconsciente[indice]['prof']] += 1
-	for p in profundidades:
-		tProm = float(tAcumPorProf[p]) / cantRespuestasPorProf[p]
-		print(round(tProm, 4), end=",")
+		if ('prof' in criterio
+				and secuencias_inconsciente[indice]['prof'] != criterio['prof']):
+			continue
+		if ('soloCorrectas' in criterio and criterio['soloCorrectas'] == True
+			and secuencias_inconsciente[indice]['respuesta'] != respuesta):
+			continue
+		respuestas.append(irt)
+	return respuestas
+
+# # # # # # # # # # # # # # # # # # # #
+
+def tiempoCorregidoInm(irt):
+	indice, _, tiempo = irt[0], irt[1], irt[2]
+	return tiempo - t_expo_inmediato[secuencias_inmediato[indice]['largo']]
+
+# # # # # # # # # # # # # # # # # # # #
+# Esta es la corrección del tiempo para el inconsciente:
+# se le resta el tiempo de expo de la secuencia, el tiempo prev a mostrar las letras, el tiempo de expo de las letras
+# que son 5, el t de las 2 primeras letras, se resta la suma del tiempo de rta en las letras del invididuo (al cual se le resto ya
+# 	el tiempo de exposición de las letras), se resta el t_buff que solo esta para 3 letras, y por ultimo el t_buff del final 
+# de la expoosición de letras
+# # # # # # # # # # # # # # # # # # # #
+def tiempoCorregidoInc(irt, rtasLetras):
+	indice, _, tiempo = irt[0], irt[1], irt[2]
+	t_rta_letras = 0
+	for i in range(0, 3):
+		rta_letra = rtasLetras[indice * 3 + i][3]
+		# Hago chequeo para ver si no me sumo "-1" en vez de 15000. 
+		# solo acá hay que hacerlo, porque si me poné el -1 pero en el total tiene en cuenta el 15000 es rompe tooo
+		if rta_letra < 0:
+			rta_letra = 15000
+		t_rta_letras += rta_letra
+	t_rta_letras -= 3 * t_expo_letras
+	return (tiempo - t_expo - t_prev_letras
+		- 5 * (t_expo_letras) - 2 * t_primeras_letras
+		- t_rta_letras - 3 * t_buff - t_buff_letras)
 
 if __name__ == '__main__':
 	main()
