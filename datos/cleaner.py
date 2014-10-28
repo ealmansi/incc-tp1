@@ -99,11 +99,33 @@ def main():
 	data = None
 	with open('incc-tp1-export-16oct.json') as data_file:
 		data = json.load(data_file)
-	sujetos = OrderedDict(sorted(data['resultados'].items(), key=lambda t: t[0]))
+	sujetos = OrderedDict(sorted(data['resultados'].items(), key=lambda t: t[0])).values()
 
+	imprimirTablaDeDatos(sujetos)
+	imprimirSeriesDeTiempos(sujetos)
+
+def imprimirTablaDeDatos(sujetos):
 	imprimirEncabezado()
-	for sujeto in sujetos.values():
-		procesarSujeto(sujeto)
+	for sujeto in sujetos:
+		imprimirEsComputador(sujeto)
+		imprimirInmPcjAciertosTotal(sujeto)
+		imprimirInmPcjAciertosPorProf(sujeto)
+		imprimirInmPcjAciertosPorLargo(sujeto)
+		imprimirInmTPromTotal(sujeto)
+		imprimirInmTPromPorProf(sujeto)
+		imprimirInmTPromPorLargo(sujeto)
+		imprimirIncPcjAciertosTotal(sujeto)
+		imprimirIncPcjAciertosPorProf(sujeto)
+		imprimirIncTPromTotal(sujeto)
+		imprimirIncTPromPorProf(sujeto)
+		print()
+
+def imprimirSeriesDeTiempos(sujetos):
+	imprimirSeriesInm(sujetos)
+	imprimirSeriesInmPorProf(sujetos)
+	imprimirSeriesInmPorLargo(sujetos)
+	imprimirSeriesInc(sujetos)
+	imprimirSeriesIncPorProf(sujetos)
 
 def imprimirEncabezado():
 	print("EsComputador", end=",")
@@ -129,20 +151,6 @@ def imprimirEncabezado():
 	print("IncTPromProf1", end=",")
 	print("IncTPromProf2", end=",")
 	print("IncTPromProf3", end=",")
-	print()
-
-def procesarSujeto(sujeto):
-	imprimirEsComputador(sujeto)
-	imprimirInmPcjAciertosTotal(sujeto)
-	imprimirInmPcjAciertosPorProf(sujeto)
-	imprimirInmPcjAciertosPorLargo(sujeto)
-	imprimirInmTPromTotal(sujeto)
-	imprimirInmTPromPorProf(sujeto)
-	imprimirInmTPromPorLargo(sujeto)
-	imprimirIncPcjAciertosTotal(sujeto)
-	imprimirIncPcjAciertosPorProf(sujeto)
-	imprimirIncTPromTotal(sujeto)
-	imprimirIncTPromPorProf(sujeto)
 	print()
 
 def imprimirEsComputador(sujeto):
@@ -175,27 +183,39 @@ def imprimirInmPcjAciertosPorLargo(sujeto):
 def imprimirInmTPromTotal(sujeto):
 	respuestasCorrectas = filtrarRespuestasInm(sujeto, {'soloCorrectas': True})
 	tAcum = 0
+	cantRespuestasContadas = 0
 	for irt in respuestasCorrectas:
-		tAcum += tiempoCorregidoInm(irt)
-	tProm = float(tAcum) / len(respuestasCorrectas)
+		tiempo = tiempoCorregidoInm(irt)
+		if tiempo >= 100:
+			tAcum += tiempo
+			cantRespuestasContadas += 1
+	tProm = float(tAcum) / cantRespuestasContadas
 	print("%.4f" % tProm, end=",")
 
 def imprimirInmTPromPorProf(sujeto):
 	for p in profundidades:
 		respuestasCorrectas = filtrarRespuestasInm(sujeto, {'prof': p, 'soloCorrectas': True})
 		tAcum = 0
+		cantRespuestasContadas = 0
 		for irt in respuestasCorrectas:
-			tAcum += tiempoCorregidoInm(irt)
-		tProm = float(tAcum) / len(respuestasCorrectas)
+			tiempo = tiempoCorregidoInm(irt)
+			if tiempo >= 100:
+				tAcum += tiempo
+				cantRespuestasContadas += 1
+		tProm = float(tAcum) / cantRespuestasContadas
 		print("%.4f" % tProm, end=",")
 
 def imprimirInmTPromPorLargo(sujeto):
 	for l in largos:
 		respuestasCorrectas = filtrarRespuestasInm(sujeto, {'largo': l, 'soloCorrectas': True})
 		tAcum = 0
+		cantRespuestasContadas = 0
 		for irt in respuestasCorrectas:
-			tAcum += tiempoCorregidoInm(irt)
-		tProm = float(tAcum) / len(respuestasCorrectas)
+			tiempo = tiempoCorregidoInm(irt)
+			if tiempo >= 100:
+				tAcum += tiempo
+				cantRespuestasContadas += 1
+		tProm = float(tAcum) / cantRespuestasContadas
 		print("%.4f" % tProm, end=",")
 
 def imprimirIncPcjAciertosTotal(sujeto):
@@ -217,7 +237,7 @@ def imprimirIncTPromTotal(sujeto):
 	tAcum = 0
 	for irt in respuestasCorrectas:
 		tiempo = tiempoCorregidoInc(irt, sujeto['inconsciente']['respuestasLetras'])
-		if tiempo > 100:
+		if tiempo >= 100:
 			tAcum += tiempo
 			cantRespuestasContadas += 1
 	tProm = float(tAcum) / cantRespuestasContadas
@@ -230,11 +250,109 @@ def imprimirIncTPromPorProf(sujeto):
 		tAcum = 0
 		for irt in respuestasCorrectas:
 			tiempo = tiempoCorregidoInc(irt, sujeto['inconsciente']['respuestasLetras'])
-			if tiempo > 100:
+			if tiempo >= 100:
 				tAcum += tiempo
 				cantRespuestasContadas += 1
 		tProm = float(tAcum) / cantRespuestasContadas
 		print("%.4f" % tProm, end=",")
+
+def imprimirSeriesInm(sujetos):
+	tiemposInmNoComputadores = []
+	tiemposInmComputadores = []
+	for sujeto in sujetos:
+		esComputador = ('computacion' in sujeto['encuesta']['estudios']
+			and sujeto['encuesta']['estudios']['computacion'])
+		respuestasCorrectas = filtrarRespuestasInm(sujeto, {'soloCorrectas': True})
+		for irt in respuestasCorrectas:
+			tiempo = tiempoCorregidoInm(irt)
+			if tiempo >= 100:
+				if not esComputador:
+					tiemposInmNoComputadores.append(tiempo)
+				else:
+					tiemposInmComputadores.append(tiempo)
+	print("tiempos_inm_nc = ", end='')
+	print(tiemposInmNoComputadores)
+	print("tiempos_inm_c = ", end='')
+	print(tiemposInmComputadores)
+
+def imprimirSeriesInmPorProf(sujetos):
+	for p in profundidades:
+		tiemposInmNoComputadores = []
+		tiemposInmComputadores = []
+		for sujeto in sujetos:
+			esComputador = ('computacion' in sujeto['encuesta']['estudios']
+				and sujeto['encuesta']['estudios']['computacion'])
+			respuestasCorrectas = filtrarRespuestasInm(sujeto, {'prof': p, 'soloCorrectas': True})
+			for irt in respuestasCorrectas:
+				tiempo = tiempoCorregidoInm(irt)
+				if tiempo >= 100:
+					if not esComputador:
+						tiemposInmNoComputadores.append(tiempo)
+					else:
+						tiemposInmComputadores.append(tiempo)
+		print("tiempos_inm_prof_%d_nc = " % p, end='')
+		print(tiemposInmNoComputadores)
+		print("tiempos_inm_prof_%d_c = " % p, end='')
+		print(tiemposInmComputadores)
+
+def imprimirSeriesInmPorLargo(sujetos):
+	for l in largos:
+		tiemposInmNoComputadores = []
+		tiemposInmComputadores = []
+		for sujeto in sujetos:
+			esComputador = ('computacion' in sujeto['encuesta']['estudios']
+				and sujeto['encuesta']['estudios']['computacion'])
+			respuestasCorrectas = filtrarRespuestasInm(sujeto, {'largo': l, 'soloCorrectas': True})
+			for irt in respuestasCorrectas:
+				tiempo = tiempoCorregidoInm(irt)
+				if tiempo >= 100:
+					if not esComputador:
+						tiemposInmNoComputadores.append(tiempo)
+					else:
+						tiemposInmComputadores.append(tiempo)
+		print("tiempos_inm_largo_%d_nc = " % l, end='')
+		print(tiemposInmNoComputadores)
+		print("tiempos_inm_largo_%d_c = " % l, end='')
+		print(tiemposInmComputadores)
+
+def imprimirSeriesInc(sujetos):
+	tiemposIncNoComputadores = []
+	tiemposIncComputadores = []
+	for sujeto in sujetos:
+		esComputador = ('computacion' in sujeto['encuesta']['estudios']
+			and sujeto['encuesta']['estudios']['computacion'])
+		respuestasCorrectas = filtrarRespuestasInc(sujeto, {'soloCorrectas': True})
+		for irt in respuestasCorrectas:
+			tiempo = tiempoCorregidoInc(irt, sujeto['inconsciente']['respuestasLetras'])
+			if tiempo >= 100:
+				if not esComputador:
+					tiemposIncNoComputadores.append(tiempo)
+				else:
+					tiemposIncComputadores.append(tiempo)
+	print("tiempos_inc_nc = ", end='')
+	print(tiemposIncNoComputadores)
+	print("tiempos_inc_c = ", end='')
+	print(tiemposIncComputadores)
+
+def imprimirSeriesIncPorProf(sujetos):
+	for p in profundidades:
+		tiemposIncNoComputadores = []
+		tiemposIncComputadores = []
+		for sujeto in sujetos:
+			esComputador = ('computacion' in sujeto['encuesta']['estudios']
+				and sujeto['encuesta']['estudios']['computacion'])
+			respuestasCorrectas = filtrarRespuestasInc(sujeto, {'prof': p, 'soloCorrectas': True})
+			for irt in respuestasCorrectas:
+				tiempo = tiempoCorregidoInc(irt, sujeto['inconsciente']['respuestasLetras'])
+				if tiempo >= 100:
+					if not esComputador:
+						tiemposIncNoComputadores.append(tiempo)
+					else:
+						tiemposIncComputadores.append(tiempo)
+		print("tiempos_inc_prof_%d_nc = " % p, end='')
+		print(tiemposIncNoComputadores)
+		print("tiempos_inc_prof_%d_c = " % p, end='')
+		print(tiemposIncComputadores)
 
 # # # # # # # # # # # # # # # # # # # #
 
