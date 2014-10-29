@@ -29,7 +29,7 @@ global i = 1;
 function plot_tiempo( vector, filename, axis_vector )
 	global i;
 	figure(i);
-	hist(vector,20);
+	hist(vector);
 	title(filename);
 	xlabel('Tiempos(ms)');
 	ylabel('Frecuencia');
@@ -39,49 +39,49 @@ function plot_tiempo( vector, filename, axis_vector )
 endfunction
 
 
-plot_tiempo(tiempos_inm_nc, 'tiempos_inm_nc.png',[0,5000,0,250]);
+plot_tiempo(tiempos_inm_nc, 'tiempos_inm_nc.png',[0,5000]);
 
-plot_tiempo(tiempos_inm_c, 'tiempos_inm_c.png',[0,5000,0,250]);
+plot_tiempo(tiempos_inm_c, 'tiempos_inm_c.png',[0,5000]);
 
-plot_tiempo(tiempos_inm_prof_1_nc, 'tiempos_inm_prof_1_nc.png',[0,5000,0, 100]);
+plot_tiempo(tiempos_inm_prof_1_nc, 'tiempos_inm_prof_1_nc.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_prof_1_c, 'tiempos_inm_prof_1_c.png',[0,5000,0, 100]);
+plot_tiempo(tiempos_inm_prof_1_c, 'tiempos_inm_prof_1_c.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_prof_2_nc, 'tiempos_inm_prof_2_nc.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_prof_2_nc, 'tiempos_inm_prof_2_nc.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_prof_2_c, 'tiempos_inm_prof_2_c.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_prof_2_c, 'tiempos_inm_prof_2_c.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_prof_3_nc, 'tiempos_inm_prof_3_nc.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_prof_3_nc, 'tiempos_inm_prof_3_nc.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_prof_3_c, 'tiempos_inm_prof_3_c.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_prof_3_c, 'tiempos_inm_prof_3_c.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_largo_6_nc, 'tiempos_inm_largo_6_nc.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_largo_6_nc, 'tiempos_inm_largo_6_nc.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_largo_6_c, 'tiempos_inm_largo_6_c.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_largo_6_c, 'tiempos_inm_largo_6_c.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_largo_12_nc, 'tiempos_inm_largo_12_nc.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_largo_12_nc, 'tiempos_inm_largo_12_nc.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_largo_12_c, 'tiempos_inm_largo_12_c.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_largo_12_c, 'tiempos_inm_largo_12_c.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_largo_18_nc, 'tiempos_inm_largo_18_nc.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_largo_18_nc, 'tiempos_inm_largo_18_nc.png',[0, 5000]);
 
-plot_tiempo(tiempos_inm_largo_18_c, 'tiempos_inm_largo_18_c.png',[0,5000,0, 80]);
+plot_tiempo(tiempos_inm_largo_18_c, 'tiempos_inm_largo_18_c.png',[0, 5000]);
 
-plot_tiempo(tiempos_inc_nc, 'tiempos_inc_nc.png',[0,5000,0,80]);
+plot_tiempo(tiempos_inc_nc, 'tiempos_inc_nc.png',[0,5000]);
 
-plot_tiempo(tiempos_inc_c, 'tiempos_inc_c.png',[0,5000,0,80]);
+plot_tiempo(tiempos_inc_c, 'tiempos_inc_c.png',[0,5000]);
 
-plot_tiempo(tiempos_inc_prof_1_nc, 'tiempos_inc_prof_1_nc.png',[0,5000,0,40]);
+plot_tiempo(tiempos_inc_prof_1_nc, 'tiempos_inc_prof_1_nc.png',[0,5000]);
 
-plot_tiempo(tiempos_inc_prof_1_c, 'tiempos_inc_prof_1_c.png',[0,5000,0,40]);
+plot_tiempo(tiempos_inc_prof_1_c, 'tiempos_inc_prof_1_c.png',[0,5000]);
 
-plot_tiempo(tiempos_inc_prof_2_nc, 'tiempos_inc_prof_2_nc.png',[0,5000,0,40]);
+plot_tiempo(tiempos_inc_prof_2_nc, 'tiempos_inc_prof_2_nc.png',[0,5000]);
 
-plot_tiempo(tiempos_inc_prof_2_c, 'tiempos_inc_prof_2_c.png',[0,5000,0,40]);
+plot_tiempo(tiempos_inc_prof_2_c, 'tiempos_inc_prof_2_c.png',[0,5000]);
 
-plot_tiempo(tiempos_inc_prof_3_nc, 'tiempos_inc_prof_3_nc.png',[0,5000,0,40]);
+plot_tiempo(tiempos_inc_prof_3_nc, 'tiempos_inc_prof_3_nc.png',[0,5000]);
 
-plot_tiempo(tiempos_inc_prof_3_c, 'tiempos_inc_prof_3_c.png',[0,5000,0,40]);
+plot_tiempo(tiempos_inc_prof_3_c, 'tiempos_inc_prof_3_c.png',[0,5000]);
 
 %Cruzo todos con todos, hago un t_test (o ranksum) por cada uno3
 % Creo istograma de cada uno
